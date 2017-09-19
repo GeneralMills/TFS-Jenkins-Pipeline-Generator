@@ -1,0 +1,5 @@
+tfsbranchsourceplugin\tfs_branch_source\HelloWorldBuilder$DescriptorImpl.class
+tfsbranchsourceplugin\tfs_branch_source\HelloWorldBuilder.class
+tfsbranchsourceplugin\tfs_branch_source\HelloWorldBuilder\DescriptorImpl\doCheckName.stapler
+META-INF\annotations\hudson.Extension
+tfsbranchsourceplugin\tfs_branch_source\HelloWorldBuilder.stapler
