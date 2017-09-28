@@ -1,0 +1,972 @@
+Started by user [8mha:////4Dc+/bKX3i8PNlV9pgkeN3nrF+Px2VJtJPF/2BUn45RyAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace C:\Projects\GMITFSPlugin\tfs_vsts_branch_source\work\workspace\qwerqwerwe
+
+
+--Looking through Team Project for repos--
+id: 4f274c7d-f61d-4424-a1f7-d34d885ac078
+name: Cloverleaf
+id: 5100f33d-ce28-4145-8326-8a0a6ccec3cc
+name: DSC-Artifactory
+id: 25cd48dd-c468-4bdb-a1d0-3b929e7fdddc
+name: HeroTutorial
+id: b905c080-d3d1-4b9e-a4a5-05f58aed2f06
+name: ShrinkwrapTest
+id: 409bf9bc-d570-4ce1-be07-a8692a476011
+name: HealthChecker
+id: 98e4b374-0ced-4cdb-8f7e-6b66fede5bc0
+name: GMJenkins.NET
+id: 41896149-1390-46e7-8b89-96e2ae2e0b83
+name: GMJenkins
+id: 561a73e4-6a96-4139-a061-87794e7eb2bb
+name: CheckmarxService
+id: 4b379ede-b3fc-4b4e-a689-2259b4608812
+name: DecommissionProjectService
+id: ec357384-4e1b-4af5-a3ca-93f86189e9a3
+name: GMIBuildDeploySSIS
+id: cf7436fb-045c-4e30-bbc8-f46c326ec435
+name: Utility
+id: f1deefa9-6a1c-4dda-b1de-c014f92cc57c
+name: DatabaseChange
+id: 0377c42b-215d-45fb-97b7-13a49df760e1
+name: DatabaseMetadata
+id: 26747fee-b823-401a-a965-f2978392d315
+name: WeCloud
+id: a9ddbd22-85fc-4f92-b6fc-ac185583f6b3
+name: WebHostingServices
+id: 1fb561e6-4c55-4245-b1c2-2fba2fd7de30
+name: ConnectionServer
+id: 8ce91ad9-cb36-4b92-a64c-5f2b2ffcb748
+name: GeneralMills.RedGate
+id: e78d1e2e-43f5-4271-8499-b92bdd91af18
+name: TemplateGenerator
+id: 2f28a11c-bd63-40e4-b6cf-0cea0215d788
+name: GMIBuildDeploy
+id: 6b6f2805-7e59-43f6-b8fe-c22b61cc97e5
+name: CheckmarxSyncPermissions
+id: 3eac4b65-7934-4d58-8574-bc2a52ffae1f
+name: SecretServer
+id: fda7916d-454c-4106-a5d4-7a0787982f56
+name: Servers
+id: f59ab429-51de-4c1d-ae9a-0dac9e39592b
+name: DatabaseAutomation
+id: fa5a76b5-38f6-4ed0-a57b-2db76bcb42d0
+name: GPanel
+id: 198a800d-321e-40d8-a26f-88c2453ea676
+name: Containers
+id: 549af658-c522-4921-8b33-ba6488750e64
+name: CoreMazeGenerator
+id: ae2908ed-8133-4385-91b8-7a46417a9936
+name: ContainersRubyTest
+id: 2cad3b4a-7108-41a6-b6cf-202139cf3222
+name: yo-vs2015-consoleapplication
+id: b8769978-09d2-48ce-80d4-8e82bd8c0f97
+name: yo-vs2015-basicsitecoresite
+id: d6343ff8-e7d4-40d2-9294-883cf51d0748
+name: yo-vs2015-mvc5razor
+id: 6a6e8a83-0fd1-495d-af0c-3cfdb7d1f1f3
+name: yo-vs2015-sharedassembly
+id: 1c1b95ff-5b96-41fa-bbbf-d2883829dd97
+name: yo-vs2015-ssisapplication
+id: 8bd4a4b6-0c2b-4fb0-9064-c75441161e1b
+name: yo-gitmigrator
+id: 97c90b43-aef3-41b0-b0a3-1f8f989f955c
+name: yo-jobdsl
+id: 4a822e0a-f9a9-4318-b076-91e1d00a1b3d
+name: Tokenizer
+id: 12c7c638-f501-4c1d-872d-fbe0a98313e9
+name: PipelineLib-JenkinsHealthChecks
+id: c50b2d03-d507-476d-a28c-696e18fdb299
+name: yo-vs2015-xamarin-hybrid
+id: d2f629bd-39fc-4d7d-a379-2acd11e0b7f0
+name: yo-vs2015-xamarincrossplatform
+id: 117ed245-97c1-4031-b4c8-c2acc39854e7
+name: ansible-playbooks
+id: 6c0bf679-e9a6-4933-88ee-56659ef4aa00
+name: DSC-Jenkins
+id: 7e711ffb-2eba-4812-b906-dba3a4729a44
+name: JenkinsHealthChecks
+id: fb2ac91b-27b4-4c17-a6a8-26fdb57a48c4
+name: DevStats
+id: 8495158b-ba7a-434c-948b-cde03965c090
+name: yo-vs2012-ssisapplication
+id: ee7af25c-f5b1-4bd0-bcde-214c093c7b35
+name: GMIPowerTools
+id: a1dcf05a-ee58-404f-ace8-f62666c3c51c
+name: SeanTestConsoleInGit
+id: 821dca10-68d2-499d-9803-2002aed0b743
+name: TestSite2017
+id: 6500ad3a-c77b-4b98-9fe2-a6558b8c29a5
+name: GitMigrationConsumer
+id: 5fc5e57b-2731-4c97-995a-c25ea96067b8
+name: DockerImages
+id: ab4059ac-9a7c-44a0-a277-83d4776c6232
+name: VirendraTestProject
+id: 72396c8f-adaf-48c3-be7a-32e6cbb6d24a
+name: TFSIntegration
+id: 8589d763-94f9-4405-acc3-bc99afcac2c9
+name: yo-vs2017-sharedassembly
+id: 6759c889-aeb4-441b-a9d4-441342199734
+name: yo-vs2017-consoleapplication
+id: 8b07b189-0c5e-425f-a847-1122d62705b5
+name: PipelineLib-Docker
+id: ab9cb21f-fe06-4db5-8cf8-debac31e7370
+name: yo-vs2017-mvc5razor
+id: 8128dba0-198e-49fa-8c60-e660f749b3b2
+name: PipelineTest
+id: f6bba716-8e50-4fd9-b315-1cb6180d03f8
+name: yo-vs2017-goveranceangular
+id: 46da5674-8b57-44e3-8b50-fdea87cb34ab
+name: PipelineLib-Shared
+
+
+--Looking through repo for branches--
+Branches in the repo: Cloverleaf
+branchName: refs/heads/master
+id: 61731f03787bcc42219fb1803a7d8a21d13da891
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: DSC-Artifactory
+branchName: refs/heads/prod
+id: 76d45b4bfa0c1ab71230efc311b98c04420ea57b
+branchName: refs/heads/sandbox
+id: ee8b153fe6ba26b279194c6d6ce2dff1055ce7a0
+branchName: refs/heads/update-cloverleaf-url
+id: 9beada30449b2eb08bf7c23bf6ee17ca06f03e07
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: HeroTutorial
+branchName: refs/heads/master
+id: 2f41079e1682b4de7cd74da00bed0f28ec3427fe
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: ShrinkwrapTest
+branchName: refs/heads/master
+id: 304e6a16000388419aa2f1a9cffbc31b133cb610
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: HealthChecker
+branchName: refs/heads/master
+id: e6a7d094b623280613498d0f022b54baa2e050e6
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: GMJenkins.NET
+branchName: refs/heads/jenkins-pipeline
+id: f69820e4727a04983308995dd868681f0f6ec2f4
+branchName: refs/heads/master
+id: 054c3a5347cab47bc02fc01f06eac2d11f98e298
+branchName: refs/heads/no-auto-lowercase
+id: c0e8a9c146c35d97d5174c30af1d30a4a999078a
+branchName: refs/heads/vsts-migration
+id: 200f41760e11333a9ae0cf5662596ab0d30aa93f
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: GMJenkins
+branchName: refs/heads/TestEnvFix
+id: 2f5e21c7dd1319bba648b08a8ea517eb23279104
+branchName: refs/heads/datalake
+id: 7044ddd3b678bdc15a51b2e7a71adef9e812ca47
+branchName: refs/heads/dsl-clean
+id: 5a62b33e1cc18539a94cbb9649c9a64297c2a6e1
+branchName: refs/heads/pipeline-integration
+id: 560262e3b94f7f6ff65769c5d306f4bcb103264c
+branchName: refs/heads/prod
+id: 51e43aa385bc1c676e0fb9ff34dd243006287471
+branchName: refs/heads/vsts-migration
+id: 3e66c8d71d797edba912bcf7005017184688fe52
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: CheckmarxService
+branchName: refs/heads/master
+id: a8ba9880d65e441de10ab13e1208e851c51a45cf
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: DecommissionProjectService
+branchName: refs/heads/master
+id: c6f849d9aceb5fde672406d3a77d1a39898a7918
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: GMIBuildDeploySSIS
+branchName: refs/heads/master
+id: 1ad45fb2bcfa5cbfe5ab5ed0c4af62ddb0f040b3
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: Utility
+branchName: refs/heads/master
+id: 61600ea86c5fc76373bd1532e175ee011db615a3
+branchName: refs/heads/net462
+id: c26b8bb8c024caf367887e1a62c0a21cb1574599
+branchName: refs/heads/reusable-sql-script
+id: 3d35d3a7fcca47b9966b4afe96974e671fbe4830
+branchName: refs/heads/update-workitem-migration-tool
+id: 73d3c1495d6699917c15336a4b866731d09a20bd
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: DatabaseChange
+branchName: refs/heads/hotfix/update-galpicker
+id: c73fdc4a85a6dbcc4f8ff6b69f94a44b07d8760d
+branchName: refs/heads/master
+id: 3182cae1546032baf21e4a437c42c22976fdd6c8
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: DatabaseMetadata
+branchName: refs/heads/master
+id: 41c5eb35722b6aa2c81e4f58eaca724bf2dde060
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: WeCloud
+branchName: refs/heads/15456-ConnectToVSTS
+id: cae49f6bbe07dd6b03d79f9ec0a43ac3f874f803
+branchName: refs/heads/DBchanges
+id: 14daf45c1052c6996af5cc278d07573aac39c145
+branchName: refs/heads/fix-test-slot-ip-change
+id: fa491caf42dbc6b14330b7f76e455b55ebcd27ae
+branchName: refs/heads/fix-web-hosting-permissions
+id: 132cf418aea38ce78851aaee64f9eea5080a972d
+branchName: refs/heads/hussainKibana
+id: c8670494e83b7f37082f9d6f17b83691dba6e807
+branchName: refs/heads/kibana
+id: dd29adcab4c773b190e0c680106b3a508cd0e56b
+branchName: refs/heads/klish-docker-wecloud
+id: b48c520e3b5d0aed5ec56aa046dcc43158530502
+branchName: refs/heads/master
+id: 4bb5a616da0172599c67560d126a8f338b6b3b4d
+branchName: refs/heads/sm-feature-webUI
+id: 6d77e6a0b6c359a021a2758020110c1b890d9820
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: WebHostingServices
+branchName: refs/heads/2016-rest-api
+id: 6d775accdfa2d174882a4516ee91ee2dfce3c9c4
+branchName: refs/heads/RedirectEndpoints
+id: 1376f4468c44355456b46b9266b16eddf09bc7d6
+branchName: refs/heads/SM-CreateEventSource
+id: 15f054b12c0bc672075a5bc89aed66718a382f7f
+branchName: refs/heads/SM-ME-IISWorkflow
+id: 9cbc13b442da67abe6f387ceb5a58d1c0d6d94f3
+branchName: refs/heads/SM-ME-LDrivecreation
+id: 9cbc13b442da67abe6f387ceb5a58d1c0d6d94f3
+branchName: refs/heads/UpdateDNSCommand
+id: 4e91de0325a20a1103cbbb5110b8250441e04ef3
+branchName: refs/heads/UpdateF5PoolCommand
+id: 404d411e7b15e8c0d54238465ca8341a1a23ec21
+branchName: refs/heads/decomissionSite
+id: 599b78cadad33754b87b560f40b7e1580e5c12f4
+branchName: refs/heads/fix-db-change
+id: d54f7a58a615ac2fa01d36ac617b678e51facc70
+branchName: refs/heads/master
+id: 232a089da0c35fcff00d447384b14454c4483dc5
+branchName: refs/heads/migration-example
+id: 6d522697ede3a2ca78bfdb2555a1ba8d0cc005ec
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: ConnectionServer
+branchName: refs/heads/master
+id: 9a3d5042dd903493e99b82c584831a7f712dd6dd
+branchName: refs/heads/update-readme
+id: 00d34cb8d1ff31f743af3f937e04eca236686dcf
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: GeneralMills.RedGate
+branchName: refs/heads/master
+id: c4e9c5f258bd386744a5c04be912e84c83ee72b5
+branchName: refs/heads/update-readme
+id: b2d0fedfbb13f6bf6cb27e935d61f583724c7f56
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: TemplateGenerator
+branchName: refs/heads/master
+id: 2be759c44a13048fc1c99dbc72062586b0d81c13
+branchName: refs/heads/replace-git-rest-calls
+id: 6a0a2147af97a47d58e7e2d63132425a505061ab
+branchName: refs/heads/supporting-goverance
+id: 75afd26c4e463bf33b4a420ad5d18c75f585856f
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: GMIBuildDeploy
+branchName: refs/heads/17919CloverleafAPI
+id: 513a73b3373c86f60dfd7a0a50b53f4b02d7a527
+branchName: refs/heads/21710RemoveGit
+id: 763cf360906a46a61d1f2e9ac05612a6b526071d
+branchName: refs/heads/22893WebHostingBnDSvcChanges
+id: b7a60963610b71b31650ee22a45e4cc773b03329
+branchName: refs/heads/Tidal2012
+id: 91c1c22a6ca30997e8e0b23538e75da4c7495d1a
+branchName: refs/heads/master
+id: 91c1c22a6ca30997e8e0b23538e75da4c7495d1a
+branchName: refs/heads/vsts-migration
+id: 452932446c1f3d9c3c77639cbbafdbb7d706d256
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: CheckmarxSyncPermissions
+branchName: refs/heads/master
+id: 2e9f19c0e5ada47ab52e042262c50f7a5b57c064
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: SecretServer
+branchName: refs/heads/master
+id: 3152c9ee32e329fafab544741f29f05cd23b474c
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: Servers
+branchName: refs/heads/ansible-workflows
+id: 456b8dfed5cc28fba93dc3fbe161e0af192316f8
+branchName: refs/heads/master
+id: 93a10f8905ecce2c9f91d4cd91f3f0de15b7edbc
+branchName: refs/heads/vs2017-test
+id: 394dcc7f045f86791187a841489dcdc66c1bbebb
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: DatabaseAutomation
+branchName: refs/heads/15455-VSTSMigration
+id: 8e3d6f9938e5c999d6f91ff0ceffb38140508117
+branchName: refs/heads/17320-RequestAPI
+id: 2b29594a6b1220fb7e692fe6cc52ca7f8ff86283
+branchName: refs/heads/19513-task-sched-oracle-deploys
+id: 280dc0adeb5c7f60b03cd88e7e3e288ed34a6612
+branchName: refs/heads/AccessFix
+id: 002d067eb4529b42b49e9f2b0516983f8f1b8ff4
+branchName: refs/heads/AccessFixDebug
+id: 10a105dcbeae906f2e89de3840cc5d4a30309b31
+branchName: refs/heads/AccessFixDebugging
+id: 8c008264c25b1151738d74d19468e020e5b242ca
+branchName: refs/heads/DanConcentoHadoopLoadTest
+id: d6c3676df7a668be4f78c1afc7499abe90920aa6
+branchName: refs/heads/hotfix/update-galpicker
+id: ec61ebd7308c44df91579c5199cb49399b8554b3
+branchName: refs/heads/master
+id: 92880fcdc0c76a135a42871f067688e76b1005a4
+branchName: refs/heads/oracle-deploy
+id: 62ebd6ea6626dc1908b676846573f3ba0e8a0f4c
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: GPanel
+branchName: refs/heads/klish-docker-gpanel
+id: 550e6df69df3d339622b2c6ea112a07f2fd53403
+branchName: refs/heads/master
+id: c038a9435256876d0af7323bf3fb1127e9dce147
+branchName: refs/heads/update-cloverleaf-url
+id: fa880f33bae84095958c81277744edf92074110b
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: Containers
+branchName: refs/heads/master
+id: 5eb5e1a847e23906e04b503ae72abc0e5b8e7101
+branchName: refs/heads/update-cloverleaf-urls
+id: 4cb6df7435a0a949f72c1fb2cec6e167ccea1f9d
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: CoreMazeGenerator
+branchName: refs/heads/master
+id: 26da15bb26e346ec0d50899c514e34991dc18abd
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through repo for branches--
+Branches in the repo: ContainersRubyTest
+branchName: refs/heads/master
+id: 01b8faddf6aa9aea73777603a427c5feffdbb029
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2015-consoleapplication
+branchName: refs/heads/master
+id: 80c15a5a0fc3bd15b95d33d76e2002770b29fa5c
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2015-basicsitecoresite
+branchName: refs/heads/master
+id: 9fde591fd7e32bc76dd4e66f92afdae4ee7ffcaf
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2015-mvc5razor
+branchName: refs/heads/master
+id: ccf48d4aeec358209c79245e8555bf4875be7299
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2015-sharedassembly
+branchName: refs/heads/master
+id: fe09c86bdfdb1b4a3b9dd78ea6fb05dbf1311c73
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2015-ssisapplication
+branchName: refs/heads/master
+id: 9a5eb9d7d489543990f3930a9a3fda53c20ea9fb
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-gitmigrator
+branchName: refs/heads/master
+id: d19c567ce083565acaf4d1994a4eacdcd9f984ac
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-jobdsl
+branchName: refs/heads/master
+id: ceca27978813e845613b8553f055b17ee4ac0022
+branchName: refs/heads/npmBuildScript
+id: 7f34779ac754182426eabb6d35e41ee261dacc39
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: Tokenizer
+branchName: refs/heads/master
+id: 1409e8f5bf5ff221e1c0b840fa318fb781772e1e
+branchName: refs/heads/pipeline-promote
+id: eb4372860b65bcfe1ef669e1d4df643ff73373f9
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through repo for branches--
+Branches in the repo: PipelineLib-JenkinsHealthChecks
+branchName: refs/heads/dev
+id: 798ddda51792c46776904e0b512e4c6b71cc8cae
+branchName: refs/heads/prod
+id: 161aa6100a8b3f808fa03808d921ab8cf186b1f5
+branchName: refs/heads/test
+id: 798ddda51792c46776904e0b512e4c6b71cc8cae
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2015-xamarin-hybrid
+branchName: refs/heads/master
+id: fa51394eef65040e9016ea1dba24cc85f685e2dd
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2015-xamarincrossplatform
+branchName: refs/heads/master
+id: 38232053a8eaa5118a1ad1e394508346f1070021
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: ansible-playbooks
+branchName: refs/heads/master
+id: 644a563c761e0d98e572b6d62be3a39b7ed2d4ea
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: DSC-Jenkins
+branchName: refs/heads/dev
+id: 65ec50892d502c2011594c0a0faf737cb6382d65
+branchName: refs/heads/prod
+id: 98d90a3dccc63645b346930b963ed085e7cfdca3
+branchName: refs/heads/qa
+id: 98d90a3dccc63645b346930b963ed085e7cfdca3
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: JenkinsHealthChecks
+branchName: refs/heads/dev
+id: 104fe32c0024c4535f26f036258eaccdc967fc71
+branchName: refs/heads/prod
+id: 4df18fc1e743e5ccc4e7e1e6c2a6a5f2d4e69765
+branchName: refs/heads/test
+id: 104fe32c0024c4535f26f036258eaccdc967fc71
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: DevStats
+branchName: refs/heads/bug/MacBuildFix
+id: 852260c113ff2f6019e81776ee51479990e65d3c
+branchName: refs/heads/master
+id: 979a8c2ce39a1c8db290388e9aa2a30fffb89b1f
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2012-ssisapplication
+branchName: refs/heads/master
+id: 7c69aa5ac961121ec101b33b925b4983862be8d0
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: GMIPowerTools
+branchName: refs/heads/master
+id: 2e25c8b7771b61a69f567e7f1d600b3a14d7b5cb
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: SeanTestConsoleInGit
+branchName: refs/heads/master
+id: c32271224ef7289b48d1fb53f3f17bd4e926736b
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: TestSite2017
+branchName: refs/heads/master
+id: ad13814a71ea63c00a36b5d11ef9c1567ff6d2f3
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: GitMigrationConsumer
+branchName: refs/heads/master
+id: f8c1138c892406f6111f07cfdec5a26f907b27be
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through repo for branches--
+Branches in the repo: DockerImages
+branchName: refs/heads/master
+id: 995cbdd392bd25ca994944505e4561eb41e7b72a
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through repo for branches--
+Branches in the repo: VirendraTestProject
+branchName: refs/heads/master
+id: f0d2599f52d290c92ef289f94ae705f3a3af6875
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: TFSIntegration
+branchName: refs/heads/master
+id: fdbb07d80df8e25864106e4b2891d4161c73a7d0
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2017-sharedassembly
+branchName: refs/heads/master
+id: e173b41dd3f9274857cab7bec192b0ce7606d875
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2017-consoleapplication
+branchName: refs/heads/master
+id: 10e4b7d72e93d045249ac402491ba2c012690943
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: PipelineLib-Docker
+branchName: refs/heads/dev
+id: bae7f84c859d6d9d670698dd0114289e4ceb73a4
+branchName: refs/heads/master
+id: 52fce6d8c9a47e76e6ad345e5d1391f19a623aee
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2017-mvc5razor
+branchName: refs/heads/master
+id: eb29097c2d0dc4846fa81411ab63447aa19b3870
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: PipelineTest
+branchName: refs/heads/dev
+id: dfc86f86f0a8c8a294c9d4ca5d2a225d609b3a9e
+branchName: refs/heads/feature/test
+id: c2a4c7c3a4b39197b434104f10ec5f82c445b97b
+branchName: refs/heads/master
+id: 1a207e6c6d21cfb735d0007762426b9c29151fef
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through branches for a jenkinsfile--
+HAS JENKINS FILE!
+
+
+--Looking through repo for branches--
+Branches in the repo: yo-vs2017-goveranceangular
+branchName: refs/heads/master
+id: a48724a7e9501b9882ed0fcf89aee2c8b852387f
+
+
+--Looking through branches for a jenkinsfile--
+
+
+--Looking through repo for branches--
+Branches in the repo: PipelineLib-Shared
+Finished: SUCCESS

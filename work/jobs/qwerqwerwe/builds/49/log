@@ -1,0 +1,658 @@
+Started by user [8mha:////4Dc+/bKX3i8PNlV9pgkeN3nrF+Px2VJtJPF/2BUn45RyAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace C:\Projects\GMITFSPlugin\tfs_vsts_branch_source\work\workspace\qwerqwerwe
+--Looking through Team Project for repos--
+Found repo: - 4f274c7d-f61d-4424-a1f7-d34d885ac078 - Cloverleaf
+Found repo: - 5100f33d-ce28-4145-8326-8a0a6ccec3cc - DSC-Artifactory
+Found repo: - 25cd48dd-c468-4bdb-a1d0-3b929e7fdddc - HeroTutorial
+Found repo: - b905c080-d3d1-4b9e-a4a5-05f58aed2f06 - ShrinkwrapTest
+Found repo: - 409bf9bc-d570-4ce1-be07-a8692a476011 - HealthChecker
+Found repo: - 98e4b374-0ced-4cdb-8f7e-6b66fede5bc0 - GMJenkins.NET
+Found repo: - 41896149-1390-46e7-8b89-96e2ae2e0b83 - GMJenkins
+Found repo: - 561a73e4-6a96-4139-a061-87794e7eb2bb - CheckmarxService
+Found repo: - 4b379ede-b3fc-4b4e-a689-2259b4608812 - DecommissionProjectService
+Found repo: - ec357384-4e1b-4af5-a3ca-93f86189e9a3 - GMIBuildDeploySSIS
+Found repo: - cf7436fb-045c-4e30-bbc8-f46c326ec435 - Utility
+Found repo: - f1deefa9-6a1c-4dda-b1de-c014f92cc57c - DatabaseChange
+Found repo: - 0377c42b-215d-45fb-97b7-13a49df760e1 - DatabaseMetadata
+Found repo: - 26747fee-b823-401a-a965-f2978392d315 - WeCloud
+Found repo: - a9ddbd22-85fc-4f92-b6fc-ac185583f6b3 - WebHostingServices
+Found repo: - 1fb561e6-4c55-4245-b1c2-2fba2fd7de30 - ConnectionServer
+Found repo: - 8ce91ad9-cb36-4b92-a64c-5f2b2ffcb748 - GeneralMills.RedGate
+Found repo: - e78d1e2e-43f5-4271-8499-b92bdd91af18 - TemplateGenerator
+Found repo: - 2f28a11c-bd63-40e4-b6cf-0cea0215d788 - GMIBuildDeploy
+Found repo: - 6b6f2805-7e59-43f6-b8fe-c22b61cc97e5 - CheckmarxSyncPermissions
+Found repo: - 3eac4b65-7934-4d58-8574-bc2a52ffae1f - SecretServer
+Found repo: - fda7916d-454c-4106-a5d4-7a0787982f56 - Servers
+Found repo: - f59ab429-51de-4c1d-ae9a-0dac9e39592b - DatabaseAutomation
+Found repo: - fa5a76b5-38f6-4ed0-a57b-2db76bcb42d0 - GPanel
+Found repo: - 198a800d-321e-40d8-a26f-88c2453ea676 - Containers
+Found repo: - 549af658-c522-4921-8b33-ba6488750e64 - CoreMazeGenerator
+Found repo: - ae2908ed-8133-4385-91b8-7a46417a9936 - ContainersRubyTest
+Found repo: - 2cad3b4a-7108-41a6-b6cf-202139cf3222 - yo-vs2015-consoleapplication
+Found repo: - b8769978-09d2-48ce-80d4-8e82bd8c0f97 - yo-vs2015-basicsitecoresite
+Found repo: - d6343ff8-e7d4-40d2-9294-883cf51d0748 - yo-vs2015-mvc5razor
+Found repo: - 6a6e8a83-0fd1-495d-af0c-3cfdb7d1f1f3 - yo-vs2015-sharedassembly
+Found repo: - 1c1b95ff-5b96-41fa-bbbf-d2883829dd97 - yo-vs2015-ssisapplication
+Found repo: - 8bd4a4b6-0c2b-4fb0-9064-c75441161e1b - yo-gitmigrator
+Found repo: - 97c90b43-aef3-41b0-b0a3-1f8f989f955c - yo-jobdsl
+Found repo: - 4a822e0a-f9a9-4318-b076-91e1d00a1b3d - Tokenizer
+Found repo: - 12c7c638-f501-4c1d-872d-fbe0a98313e9 - PipelineLib-JenkinsHealthChecks
+Found repo: - c50b2d03-d507-476d-a28c-696e18fdb299 - yo-vs2015-xamarin-hybrid
+Found repo: - d2f629bd-39fc-4d7d-a379-2acd11e0b7f0 - yo-vs2015-xamarincrossplatform
+Found repo: - 117ed245-97c1-4031-b4c8-c2acc39854e7 - ansible-playbooks
+Found repo: - 6c0bf679-e9a6-4933-88ee-56659ef4aa00 - DSC-Jenkins
+Found repo: - 7e711ffb-2eba-4812-b906-dba3a4729a44 - JenkinsHealthChecks
+Found repo: - fb2ac91b-27b4-4c17-a6a8-26fdb57a48c4 - DevStats
+Found repo: - 8495158b-ba7a-434c-948b-cde03965c090 - yo-vs2012-ssisapplication
+Found repo: - ee7af25c-f5b1-4bd0-bcde-214c093c7b35 - GMIPowerTools
+Found repo: - a1dcf05a-ee58-404f-ace8-f62666c3c51c - SeanTestConsoleInGit
+Found repo: - 821dca10-68d2-499d-9803-2002aed0b743 - TestSite2017
+Found repo: - 6500ad3a-c77b-4b98-9fe2-a6558b8c29a5 - GitMigrationConsumer
+Found repo: - 5fc5e57b-2731-4c97-995a-c25ea96067b8 - DockerImages
+Found repo: - ab4059ac-9a7c-44a0-a277-83d4776c6232 - VirendraTestProject
+Found repo: - 72396c8f-adaf-48c3-be7a-32e6cbb6d24a - TFSIntegration
+Found repo: - 8589d763-94f9-4405-acc3-bc99afcac2c9 - yo-vs2017-sharedassembly
+Found repo: - 6759c889-aeb4-441b-a9d4-441342199734 - yo-vs2017-consoleapplication
+Found repo: - 8b07b189-0c5e-425f-a847-1122d62705b5 - PipelineLib-Docker
+Found repo: - ab9cb21f-fe06-4db5-8cf8-debac31e7370 - yo-vs2017-mvc5razor
+Found repo: - 8128dba0-198e-49fa-8c60-e660f749b3b2 - PipelineTest
+Found repo: - f6bba716-8e50-4fd9-b315-1cb6180d03f8 - yo-vs2017-goveranceangular
+Found repo: - 46da5674-8b57-44e3-8b50-fdea87cb34ab - PipelineLib-Shared
+
+
+--Looking through repo for branches--
+Repo: Cloverleaf
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: DSC-Artifactory
+Found branch: refs/heads/prod
+Found branch: refs/heads/sandbox
+Found branch: refs/heads/update-cloverleaf-url
+	--Looking through branch: prod for a jenkinsfile--
+None found
+	--Looking through branch: sandbox for a jenkinsfile--
+None found
+	--Looking through branch: update-cloverleaf-url for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: HeroTutorial
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: ShrinkwrapTest
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: HealthChecker
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: GMJenkins.NET
+Found branch: refs/heads/jenkins-pipeline
+Found branch: refs/heads/master
+Found branch: refs/heads/no-auto-lowercase
+Found branch: refs/heads/vsts-migration
+	--Looking through branch: jenkins-pipeline for a jenkinsfile--
+None found
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: no-auto-lowercase for a jenkinsfile--
+None found
+	--Looking through branch: vsts-migration for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: GMJenkins
+Found branch: refs/heads/TestEnvFix
+Found branch: refs/heads/datalake
+Found branch: refs/heads/dsl-clean
+Found branch: refs/heads/pipeline-integration
+Found branch: refs/heads/prod
+Found branch: refs/heads/vsts-migration
+	--Looking through branch: TestEnvFix for a jenkinsfile--
+None found
+	--Looking through branch: datalake for a jenkinsfile--
+None found
+	--Looking through branch: dsl-clean for a jenkinsfile--
+None found
+	--Looking through branch: pipeline-integration for a jenkinsfile--
+None found
+	--Looking through branch: prod for a jenkinsfile--
+None found
+	--Looking through branch: vsts-migration for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: CheckmarxService
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: DecommissionProjectService
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: GMIBuildDeploySSIS
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: Utility
+Found branch: refs/heads/master
+Found branch: refs/heads/net462
+Found branch: refs/heads/reusable-sql-script
+Found branch: refs/heads/update-workitem-migration-tool
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: net462 for a jenkinsfile--
+None found
+	--Looking through branch: reusable-sql-script for a jenkinsfile--
+None found
+	--Looking through branch: update-workitem-migration-tool for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: DatabaseChange
+Found branch: refs/heads/hotfix/update-galpicker
+Found branch: refs/heads/master
+	--Looking through branch: hotfix/update-galpicker for a jenkinsfile--
+None found
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: DatabaseMetadata
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: WeCloud
+Found branch: refs/heads/15456-ConnectToVSTS
+Found branch: refs/heads/DBchanges
+Found branch: refs/heads/fix-test-slot-ip-change
+Found branch: refs/heads/fix-web-hosting-permissions
+Found branch: refs/heads/hussainKibana
+Found branch: refs/heads/kibana
+Found branch: refs/heads/klish-docker-wecloud
+Found branch: refs/heads/master
+Found branch: refs/heads/sm-feature-webUI
+	--Looking through branch: 15456-ConnectToVSTS for a jenkinsfile--
+None found
+	--Looking through branch: DBchanges for a jenkinsfile--
+None found
+	--Looking through branch: fix-test-slot-ip-change for a jenkinsfile--
+None found
+	--Looking through branch: fix-web-hosting-permissions for a jenkinsfile--
+None found
+	--Looking through branch: hussainKibana for a jenkinsfile--
+None found
+	--Looking through branch: kibana for a jenkinsfile--
+None found
+	--Looking through branch: klish-docker-wecloud for a jenkinsfile--
+FOUND JENKINS FILE!
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: sm-feature-webUI for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: WebHostingServices
+Found branch: refs/heads/2016-rest-api
+Found branch: refs/heads/RedirectEndpoints
+Found branch: refs/heads/SM-CreateEventSource
+Found branch: refs/heads/SM-ME-IISWorkflow
+Found branch: refs/heads/SM-ME-LDrivecreation
+Found branch: refs/heads/UpdateDNSCommand
+Found branch: refs/heads/UpdateF5PoolCommand
+Found branch: refs/heads/decomissionSite
+Found branch: refs/heads/fix-db-change
+Found branch: refs/heads/master
+Found branch: refs/heads/migration-example
+	--Looking through branch: 2016-rest-api for a jenkinsfile--
+None found
+	--Looking through branch: RedirectEndpoints for a jenkinsfile--
+None found
+	--Looking through branch: SM-CreateEventSource for a jenkinsfile--
+None found
+	--Looking through branch: SM-ME-IISWorkflow for a jenkinsfile--
+None found
+	--Looking through branch: SM-ME-LDrivecreation for a jenkinsfile--
+None found
+	--Looking through branch: UpdateDNSCommand for a jenkinsfile--
+None found
+	--Looking through branch: UpdateF5PoolCommand for a jenkinsfile--
+None found
+	--Looking through branch: decomissionSite for a jenkinsfile--
+None found
+	--Looking through branch: fix-db-change for a jenkinsfile--
+None found
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: migration-example for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: ConnectionServer
+Found branch: refs/heads/master
+Found branch: refs/heads/update-readme
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: update-readme for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: GeneralMills.RedGate
+Found branch: refs/heads/master
+Found branch: refs/heads/update-readme
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: update-readme for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: TemplateGenerator
+Found branch: refs/heads/master
+Found branch: refs/heads/replace-git-rest-calls
+Found branch: refs/heads/supporting-goverance
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: replace-git-rest-calls for a jenkinsfile--
+None found
+	--Looking through branch: supporting-goverance for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: GMIBuildDeploy
+Found branch: refs/heads/17919CloverleafAPI
+Found branch: refs/heads/21710RemoveGit
+Found branch: refs/heads/22893WebHostingBnDSvcChanges
+Found branch: refs/heads/Tidal2012
+Found branch: refs/heads/master
+Found branch: refs/heads/vsts-migration
+	--Looking through branch: 17919CloverleafAPI for a jenkinsfile--
+None found
+	--Looking through branch: 21710RemoveGit for a jenkinsfile--
+None found
+	--Looking through branch: 22893WebHostingBnDSvcChanges for a jenkinsfile--
+None found
+	--Looking through branch: Tidal2012 for a jenkinsfile--
+None found
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: vsts-migration for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: CheckmarxSyncPermissions
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: SecretServer
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: Servers
+Found branch: refs/heads/ansible-workflows
+Found branch: refs/heads/master
+Found branch: refs/heads/vs2017-test
+	--Looking through branch: ansible-workflows for a jenkinsfile--
+None found
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: vs2017-test for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: DatabaseAutomation
+Found branch: refs/heads/15455-VSTSMigration
+Found branch: refs/heads/17320-RequestAPI
+Found branch: refs/heads/19513-task-sched-oracle-deploys
+Found branch: refs/heads/AccessFix
+Found branch: refs/heads/AccessFixDebug
+Found branch: refs/heads/AccessFixDebugging
+Found branch: refs/heads/DanConcentoHadoopLoadTest
+Found branch: refs/heads/hotfix/update-galpicker
+Found branch: refs/heads/master
+Found branch: refs/heads/oracle-deploy
+	--Looking through branch: 15455-VSTSMigration for a jenkinsfile--
+None found
+	--Looking through branch: 17320-RequestAPI for a jenkinsfile--
+None found
+	--Looking through branch: 19513-task-sched-oracle-deploys for a jenkinsfile--
+None found
+	--Looking through branch: AccessFix for a jenkinsfile--
+None found
+	--Looking through branch: AccessFixDebug for a jenkinsfile--
+None found
+	--Looking through branch: AccessFixDebugging for a jenkinsfile--
+None found
+	--Looking through branch: DanConcentoHadoopLoadTest for a jenkinsfile--
+None found
+	--Looking through branch: hotfix/update-galpicker for a jenkinsfile--
+None found
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: oracle-deploy for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: GPanel
+Found branch: refs/heads/klish-docker-gpanel
+Found branch: refs/heads/master
+Found branch: refs/heads/update-cloverleaf-url
+	--Looking through branch: klish-docker-gpanel for a jenkinsfile--
+FOUND JENKINS FILE!
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: update-cloverleaf-url for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: Containers
+Found branch: refs/heads/master
+Found branch: refs/heads/update-cloverleaf-urls
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: update-cloverleaf-urls for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: CoreMazeGenerator
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+FOUND JENKINS FILE!
+
+
+--Looking through repo for branches--
+Repo: ContainersRubyTest
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2015-consoleapplication
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2015-basicsitecoresite
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2015-mvc5razor
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2015-sharedassembly
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2015-ssisapplication
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-gitmigrator
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-jobdsl
+Found branch: refs/heads/master
+Found branch: refs/heads/npmBuildScript
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: npmBuildScript for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: Tokenizer
+Found branch: refs/heads/master
+Found branch: refs/heads/pipeline-promote
+	--Looking through branch: master for a jenkinsfile--
+None found
+	--Looking through branch: pipeline-promote for a jenkinsfile--
+FOUND JENKINS FILE!
+
+
+--Looking through repo for branches--
+Repo: PipelineLib-JenkinsHealthChecks
+Found branch: refs/heads/dev
+Found branch: refs/heads/prod
+Found branch: refs/heads/test
+	--Looking through branch: dev for a jenkinsfile--
+None found
+	--Looking through branch: prod for a jenkinsfile--
+None found
+	--Looking through branch: test for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2015-xamarin-hybrid
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2015-xamarincrossplatform
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: ansible-playbooks
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: DSC-Jenkins
+Found branch: refs/heads/dev
+Found branch: refs/heads/prod
+Found branch: refs/heads/qa
+	--Looking through branch: dev for a jenkinsfile--
+None found
+	--Looking through branch: prod for a jenkinsfile--
+None found
+	--Looking through branch: qa for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: JenkinsHealthChecks
+Found branch: refs/heads/dev
+Found branch: refs/heads/prod
+Found branch: refs/heads/test
+	--Looking through branch: dev for a jenkinsfile--
+None found
+	--Looking through branch: prod for a jenkinsfile--
+None found
+	--Looking through branch: test for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: DevStats
+Found branch: refs/heads/bug/MacBuildFix
+Found branch: refs/heads/master
+	--Looking through branch: bug/MacBuildFix for a jenkinsfile--
+None found
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2012-ssisapplication
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: GMIPowerTools
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: SeanTestConsoleInGit
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: TestSite2017
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: GitMigrationConsumer
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+FOUND JENKINS FILE!
+
+
+--Looking through repo for branches--
+Repo: DockerImages
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+FOUND JENKINS FILE!
+
+
+--Looking through repo for branches--
+Repo: VirendraTestProject
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: TFSIntegration
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2017-sharedassembly
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2017-consoleapplication
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: PipelineLib-Docker
+Found branch: refs/heads/dev
+Found branch: refs/heads/master
+	--Looking through branch: dev for a jenkinsfile--
+None found
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: yo-vs2017-mvc5razor
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: PipelineTest
+Found branch: refs/heads/dev
+Found branch: refs/heads/feature/test
+Found branch: refs/heads/master
+	--Looking through branch: dev for a jenkinsfile--
+FOUND JENKINS FILE!
+	--Looking through branch: feature/test for a jenkinsfile--
+FOUND JENKINS FILE!
+	--Looking through branch: master for a jenkinsfile--
+FOUND JENKINS FILE!
+
+
+--Looking through repo for branches--
+Repo: yo-vs2017-goveranceangular
+Found branch: refs/heads/master
+	--Looking through branch: master for a jenkinsfile--
+None found
+
+
+--Looking through repo for branches--
+Repo: PipelineLib-Shared
+Finished: SUCCESS
