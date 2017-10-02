@@ -9,9 +9,10 @@ import com.squareup.okhttp.Response;
 import hudson.model.Build;
 import hudson.model.BuildListener;
 import hudson.model.Result;
-import java.io.File;
-import java.io.IOException;
+
+import java.io.*;
 import java.net.Proxy;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -70,18 +71,21 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
                     if(checkBranchesForFile(buildListener, client, repos.getJSONObject(i).get("id").toString(), branches.getJSONObject(j)))
                     {
                         //Once we have found the file we are looking for, we don't need to check the rest of the branches
-                        reposWithFile.add(repos.getJSONObject(i).get("id").toString());
+                        reposWithFile.add(repos.getJSONObject(i).get("name").toString());
                         break;
                     }
                 }
             }
 
             buildListener.getLogger().println("\n\n--Repos with the file--");
-            for(String id : reposWithFile)
+            for(String name : reposWithFile)
             {
-                buildListener.getLogger().println(id);
-
+                File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
+                buildListener.getLogger().println(name);
+                InputStream foobar = replaceTokensInXML(xmlFile, name);
+                Jenkins.getInstance().createProjectFromXML(name+"-MBP", foobar);
             }
+
             return null;
         }
 
@@ -186,6 +190,41 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
             throw new Exception("No TFS username found");
         }
         return tfsCredentials;
+    }
+
+    private InputStream replaceTokensInXML(File xmlFile, String repoName) throws IOException {
+        BufferedReader br = null;
+        String newString = "";
+        StringBuilder strTotale = new StringBuilder();
+        try {
+
+            FileReader reader = new FileReader(xmlFile);
+            String search = "#repo#";
+            String guid = "#guid#";
+
+            br = new BufferedReader(reader);
+            while ((newString = br.readLine()) != null){
+                newString = newString.replaceAll(search, repoName);
+                newString = newString.replaceAll(guid, java.util.UUID.randomUUID().toString());
+                strTotale.append(newString);
+            }
+
+        } catch ( IOException  e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } // calls it
+        finally
+        {
+            try {
+                br.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        InputStream xml = new ByteArrayInputStream(strTotale.toString().getBytes(StandardCharsets.UTF_8));
+        return xml;
     }
 
 }
