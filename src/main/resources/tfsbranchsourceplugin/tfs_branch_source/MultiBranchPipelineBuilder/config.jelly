@@ -16,7 +16,7 @@
   <f:entry title="Team Project" field="teamProject">
     <f:textbox />
   </f:entry>
-    <f:entry title="Credentials" field="username">
+    <f:entry title="Credentials" field="credentialsId">
         <c:select />
     </f:entry>
   <f:entry title="Project Recognizer" field="projectRecognizer">

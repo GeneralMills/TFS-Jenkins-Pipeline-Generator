@@ -2,7 +2,10 @@ package tfsbranchsourceplugin.tfs_branch_source;
 
 import com.cloudbees.hudson.plugins.folder.Folder;
 import com.cloudbees.plugins.credentials.UserCredentialsProvider;
+import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
+import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
 import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
+import com.cloudbees.plugins.credentials.domains.URIRequirementBuilder;
 import com.squareup.okhttp.Authenticator;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -10,21 +13,22 @@ import com.squareup.okhttp.Response;
 import hudson.Extension;
 import hudson.FilePath;
 import hudson.Launcher;
-import hudson.model.AbstractProject;
-import hudson.model.Run;
-import hudson.model.TaskListener;
+import hudson.model.*;
+import hudson.model.queue.Tasks;
+import hudson.security.ACL;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Builder;
-import hudson.util.FormValidation;
+import hudson.util.ListBoxModel;
 import jenkins.model.Jenkins;
 import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
 import org.json.JSONArray;
+import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
+import org.jenkinsci.plugins.gitclient.GitClient;
 
-import javax.servlet.ServletException;
 import java.io.*;
 import java.net.Proxy;
 import java.nio.charset.StandardCharsets;
@@ -35,16 +39,16 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
 
     private final String teamProjectUrl;
     private final String teamProject;
-    private final String username;
+    private final String credentialsId;
     private final String projectRecognizer;
 
 
     // Fields in config.jelly must match the parameter names in the "DataBoundConstructor"
     @DataBoundConstructor
-    public MultiBranchPipelineBuilder(String teamProjectUrl, String teamProject, String username, String projectRecognizer) {
+    public MultiBranchPipelineBuilder(String teamProjectUrl, String teamProject, String credentialsId, String projectRecognizer) {
         this.teamProjectUrl = teamProjectUrl;
         this.teamProject = teamProject;
-        this.username = username;
+        this.credentialsId = credentialsId;
         this.projectRecognizer = projectRecognizer;
 
     }
@@ -58,8 +62,8 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
     public String getTeamProject() {
         return teamProject;
     }
-    public String getUsername() {
-        return username;
+    public String getCredentialsId() {
+        return credentialsId;
     }
     public String getProjectRecognizer() {
         return projectRecognizer;
@@ -72,12 +76,12 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         String url = teamProjectUrl;
         String team = teamProject;
         String file = projectRecognizer;
-        String credentialsUsername = username;
+        String credentials = credentialsId;
 
         final StandardUsernamePasswordCredentials tfsCredentials;
         try
         {
-            tfsCredentials = getStandardUsernamePasswordCredentials(credentialsUsername);
+            tfsCredentials = getStandardUsernamePasswordCredentials(credentials);
         } catch (Exception e)
         {
             listener.getLogger().println(e.getMessage());
@@ -107,7 +111,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         }
 
         listener.getLogger().println("\n\n--Repos with the file--");
-        Folder folder = new Folder(Jenkins.getInstance(), teamProject);
+        Folder folder = new Folder(Jenkins.getInstance(), team);
         for(String name : reposWithFile)
         {
             File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
@@ -210,7 +214,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return new org.json.JSONObject(json);
     }
 
-    private StandardUsernamePasswordCredentials getStandardUsernamePasswordCredentials(String credentialsUsername) throws Exception {
+    private StandardUsernamePasswordCredentials getStandardUsernamePasswordCredentials(String credentialsId) throws Exception {
         ClassLoader loader = Jenkins.getInstance().pluginManager.getPlugin("credentials").classLoader;
 
         UserCredentialsProvider provider = new UserCredentialsProvider();
@@ -220,7 +224,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         StandardUsernamePasswordCredentials tfsCredentials = null;
         for(StandardUsernamePasswordCredentials c : credentials)
         {
-            if(c.getUsername().equals(credentialsUsername))
+            if(c.getId().equals(credentialsId))
             {
                 tfsCredentials = c;
             }
@@ -277,14 +281,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
      */
     @Extension // This indicates to Jenkins that this is an implementation of an extension point.
     public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
-        /**
-         * To persist global configuration information,
-         * simply store it in a field and call save().
-         *
-         * <p>
-         * If you don't want fields to be persisted, use {@code transient}.
-         */
-        private boolean useFrench;
+
 
         /**
          * In order to load the persisted global configuration, you have to
@@ -294,30 +291,28 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             load();
         }
 
-        /**
-         * Performs on-the-fly validation of the form field 'name'.
-         *
-         * @param value
-         *      This parameter receives the value that the user has typed.
-         * @return
-         *      Indicates the outcome of the validation. This is sent to the browser.
-         *      <p>
-         *      Note that returning {@link FormValidation#error(String)} does not
-         *      prevent the form from being saved. It just means that a message
-         *      will be displayed to the user.
-         */
-        public FormValidation doCheckName(@QueryParameter String value)
-                throws IOException, ServletException {
-            if (value.length() == 0)
-                return FormValidation.error("Please set a name");
-            if (value.length() < 4)
-                return FormValidation.warning("Isn't the name too short?");
-            return FormValidation.ok();
-        }
 
         public boolean isApplicable(Class<? extends AbstractProject> aClass) {
             // Indicates that this builder can be used with all kinds of project types
             return true;
+        }
+
+        public ListBoxModel doFillCredentialsIdItems(@AncestorInPath Item context,
+                                                     @QueryParameter String remote,
+                                                     @QueryParameter String username) {
+            if (context == null && !Jenkins.getActiveInstance().hasPermission(Jenkins.ADMINISTER) ||
+                    context != null && !context.hasPermission(Item.EXTENDED_READ)) {
+                return new StandardListBoxModel().includeCurrentValue(username);
+            }
+            return new StandardListBoxModel()
+                    .includeEmptyValue()
+                    .includeMatchingAs(
+                            context instanceof Queue.Task ? Tasks.getAuthenticationOf((Queue.Task)context) : ACL.SYSTEM,
+                            context,
+                            StandardUsernameCredentials.class,
+                            URIRequirementBuilder.fromUri(remote).build(),
+                            GitClient.CREDENTIALS_MATCHER)
+                    .includeCurrentValue(username);
         }
 
         /**
@@ -338,14 +333,5 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             return super.configure(req,formData);
         }
 
-        /**
-         * This method returns true if the global configuration says we should speak French.
-         *
-         * The method name is bit awkward because global.jelly calls this method to determine
-         * the initial state of the checkbox by the naming convention.
-         *
-        public boolean getUseFrench() {
-            return useFrench;
-        }*/
     }
 }
