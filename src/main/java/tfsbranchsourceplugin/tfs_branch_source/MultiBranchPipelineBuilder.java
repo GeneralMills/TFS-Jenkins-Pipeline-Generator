@@ -23,6 +23,7 @@ import jenkins.model.Jenkins;
 import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
 import org.json.JSONArray;
+import org.jvnet.hudson.reactor.ReactorException;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
@@ -116,7 +117,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         {
             File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
             listener.getLogger().println(name);
-            InputStream foobar = replaceTokensInXML(xmlFile, name);
+            InputStream foobar = replaceTokensInXML(xmlFile, name, credentials);
             try
             {
                 folder.createProjectFromXML(name, foobar);
@@ -126,8 +127,17 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             {
                 listener.getLogger().println(e.getMessage());
             }
-
         }
+
+        try
+        {
+            Jenkins.getInstance().doReload();
+        }
+        catch(IOException e)
+        {
+            listener.getLogger().println(e.getMessage());
+        }
+
 
     }
 
@@ -236,20 +246,22 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return tfsCredentials;
     }
 
-    private InputStream replaceTokensInXML(File xmlFile, String repoName) throws IOException {
+    private InputStream replaceTokensInXML(File xmlFile, String repoName, String credentialsId) throws IOException {
         BufferedReader br = null;
         String newString;
         StringBuilder strTotale = new StringBuilder();
         try {
 
             FileReader reader = new FileReader(xmlFile);
-            String search = "#repo#";
-            String guid = "#guid#";
+            String repoToken = "#repo#";
+            String guidToken = "#guid#";
+            String credentialsToken = "#credentialsId#";
 
             br = new BufferedReader(reader);
             while ((newString = br.readLine()) != null){
-                newString = newString.replaceAll(search, repoName);
-                newString = newString.replaceAll(guid, java.util.UUID.randomUUID().toString());
+                newString = newString.replaceAll(repoToken, repoName);
+                newString = newString.replaceAll(guidToken, java.util.UUID.randomUUID().toString());
+                newString = newString.replaceAll(credentialsToken, credentialsId);
                 strTotale.append(newString);
             }
 
