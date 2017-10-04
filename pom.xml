@@ -25,9 +25,9 @@
     -->
   </properties>
 
-  <name>TODO Plugin</name>
-  <description>TODO</description>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/TODO+Plugin</url>
+  <name>TFS Git Scanner</name>
+  <description>Similar to the Github Organization plugin, this plugin will scan a TFS Git organization and create Multibranch Pipelines for repos found in a given Team Project</description>
+  <url>https://wiki.jenkins-ci.org/display/JENKINS/TFSGitScanner</url>
 
   <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
 
@@ -120,7 +120,11 @@
       <artifactId>workflow-multibranch</artifactId>
       <version>2.16</version>
     </dependency>
-
+    <dependency>
+      <groupId>org.jenkins-ci.plugins</groupId>
+      <artifactId>cloudbees-folder</artifactId>
+      <version>6.1.2</version>
+    </dependency>
   </dependencies>
 
 

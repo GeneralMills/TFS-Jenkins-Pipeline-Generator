@@ -53,22 +53,27 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
         @Override
         protected Result doRun(BuildListener buildListener) throws Exception {
 
-            final StandardUsernamePasswordCredentials tfsCredentials = getStandardUsernamePasswordCredentials();
-            ArrayList<String> reposWithFile = new ArrayList<String>();
+            //replace these from config
+            String teamProjectUrl = "https://tfs.generalmills.com/tfs/GitCollection/cloverleaf/";
+            String file = "Jenkinsfile";
+            String credentialsUsername = "GENMILLS\\M080905";
+
+            final StandardUsernamePasswordCredentials tfsCredentials = getStandardUsernamePasswordCredentials(credentialsUsername);
+            ArrayList<String> reposWithFile = new ArrayList<>();
 
             OkHttpClient client = createClient(tfsCredentials);
 
             buildListener.getLogger().println("--Looking through Team Project for repos--");
-            JSONArray repos = GetReposForTeamProject(buildListener, client);
+            JSONArray repos = GetReposForTeamProject(buildListener, client, teamProjectUrl);
 
             for(int i = 0; i < repos.length(); i++)
             {
                 buildListener.getLogger().println("\n\n--Looking through repo for branches--");
-                JSONArray branches = GetBranchesForRepo(buildListener, client, repos.getJSONObject(i));
+                JSONArray branches = GetBranchesForRepo(buildListener, client, teamProjectUrl, repos.getJSONObject(i));
 
                 for(int j = 0; j < branches.length(); j++)
                 {
-                    if(checkBranchesForFile(buildListener, client, repos.getJSONObject(i).get("id").toString(), branches.getJSONObject(j)))
+                    if(checkBranchesForFile(buildListener, client, teamProjectUrl, repos.getJSONObject(i).get("id").toString(), branches.getJSONObject(j), file))
                     {
                         //Once we have found the file we are looking for, we don't need to check the rest of the branches
                         reposWithFile.add(repos.getJSONObject(i).get("name").toString());
@@ -83,7 +88,16 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
                 File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
                 buildListener.getLogger().println(name);
                 InputStream foobar = replaceTokensInXML(xmlFile, name);
-                Jenkins.getInstance().createProjectFromXML(name+"-MBP", foobar);
+                try
+                {
+                    Jenkins.getInstance().createProjectFromXML(name + "-MBP", foobar);
+                }
+                //Happens when a job already exists with the given name
+                catch(IllegalArgumentException e)
+                {
+                    buildListener.getLogger().println(e.getMessage());
+                }
+
             }
 
             return null;
@@ -95,8 +109,8 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
         }
     }
 
-    private JSONArray GetReposForTeamProject(BuildListener buildListener, OkHttpClient client) throws IOException {
-        String listOfReposUrl = "https://tfs.generalmills.com/tfs/GitCollection/cloverleaf/_apis/git/repositories?api-version=1";
+    private JSONArray GetReposForTeamProject(BuildListener buildListener, OkHttpClient client, String teamProjectUrl) throws IOException {
+        String listOfReposUrl = teamProjectUrl + "_apis/git/repositories?api-version=1";
         JSONObject obj = callGet(client, listOfReposUrl);
         JSONArray repos = obj.getJSONArray("value");
         for(int i = 0; i < repos.length(); i++)
@@ -107,8 +121,8 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
         return repos;
     }
 
-    private JSONArray GetBranchesForRepo(BuildListener buildListener, OkHttpClient client, JSONObject repo) throws IOException {
-        String listOfBranchesUrl = "https://tfs.generalmills.com/tfs/GitCollection/cloverleaf/_apis/git/repositories/"+ repo.get("id") +"/refs?filter=heads&api-version=1.0";
+    private JSONArray GetBranchesForRepo(BuildListener buildListener, OkHttpClient client, String teamProjectUrl, JSONObject repo) throws IOException {
+        String listOfBranchesUrl = teamProjectUrl + "_apis/git/repositories/"+ repo.get("id") +"/refs?filter=heads&api-version=1.0";
         JSONObject obj = callGet(client, listOfBranchesUrl);
         JSONArray branches = obj.getJSONArray("value");
         buildListener.getLogger().println("Repo: " + repo.get("name"));
@@ -121,10 +135,10 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
         return branches;
     }
 
-    private boolean checkBranchesForFile(BuildListener buildListener, OkHttpClient client, String repoId, JSONObject branch) throws IOException {
+    private boolean checkBranchesForFile(BuildListener buildListener, OkHttpClient client, String teamProjectUrl, String repoId, JSONObject branch, String file) throws IOException {
         String branchName = branch.get("name").toString().substring(11);
         buildListener.getLogger().println("\t--Looking through branch: " + branchName + " for a jenkinsfile--");
-        String jenkinsFileMetadataUrl = "https://tfs.generalmills.com/tfs/GitCollection/cloverleaf/_apis/git/repositories/" + repoId + "/items?api-version=1.0&version=" + branchName + "&scopepath=/Jenkinsfile";
+        String jenkinsFileMetadataUrl = teamProjectUrl + "_apis/git/repositories/" + repoId + "/items?api-version=1.0&version=" + branchName + "&scopepath=/" + file;
         JSONObject obj = callGet(client, jenkinsFileMetadataUrl);
         if(obj.has("value")) {
             JSONArray fileList = obj.getJSONArray("value");
@@ -170,7 +184,7 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
         return new JSONObject(json);
     }
 
-    private StandardUsernamePasswordCredentials getStandardUsernamePasswordCredentials() throws Exception {
+    private StandardUsernamePasswordCredentials getStandardUsernamePasswordCredentials(String credentialsUsername) throws Exception {
         ClassLoader loader = Jenkins.getInstance().pluginManager.getPlugin("credentials").classLoader;
 
         UserCredentialsProvider provider = new UserCredentialsProvider();
@@ -180,7 +194,7 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
         StandardUsernamePasswordCredentials tfsCredentials = null;
         for(StandardUsernamePasswordCredentials c : credentials)
         {
-            if(c.getUsername().equals("GENMILLS\\M080905"))
+            if(c.getUsername().equals(credentialsUsername))
             {
                 tfsCredentials = c;
             }
@@ -194,7 +208,7 @@ public class TFSRun extends Build<TeamFoundationServerSCM, TFSRun> {
 
     private InputStream replaceTokensInXML(File xmlFile, String repoName) throws IOException {
         BufferedReader br = null;
-        String newString = "";
+        String newString;
         StringBuilder strTotale = new StringBuilder();
         try {
 

@@ -1,0 +1,25 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:c="/lib/credentials" xmlns:f="/lib/form">
+  <!--
+    This jelly script is used for per-project configuration.
+
+    See global.jelly for a general discussion about jelly script.
+  -->
+
+  <!--
+    Creates a text field that shows the value of the "name" property.
+    When submitted, it will be passed to the corresponding constructor parameter.
+  -->
+  <f:entry title="Team Project URL" field="teamProjectUrl">
+    <f:textbox />
+  </f:entry>
+  <f:entry title="Team Project" field="teamProject">
+    <f:textbox />
+  </f:entry>
+    <f:entry title="Credentials" field="username">
+        <c:select />
+    </f:entry>
+  <f:entry title="Project Recognizer" field="projectRecognizer">
+    <f:textbox />
+  </f:entry>
+</j:jelly>

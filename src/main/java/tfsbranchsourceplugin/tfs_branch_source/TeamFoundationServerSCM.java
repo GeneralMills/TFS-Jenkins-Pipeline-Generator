@@ -24,7 +24,7 @@ public class TeamFoundationServerSCM extends Project<TeamFoundationServerSCM, TF
     @Extension
     public static final TeamFoundationServerSCMDescriptor DESCRIPTOR = new TeamFoundationServerSCMDescriptor();
 
-    public static class TeamFoundationServerSCMDescriptor extends AbstractProject.AbstractProjectDescriptor {
+    public static class TeamFoundationServerSCMDescriptor extends AbstractProjectDescriptor {
 
         @Override
         public TopLevelItem newInstance(ItemGroup itemGroup, String s) {
