@@ -115,9 +115,9 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         Folder folder = new Folder(Jenkins.getInstance(), team);
         for(String name : reposWithFile)
         {
-            File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\newconfig.xml");
+            File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
             listener.getLogger().println(name);
-            InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file);
+            InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file, team);
             try
             {
                 folder.createProjectFromXML(name, foobar);
@@ -246,7 +246,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return tfsCredentials;
     }
 
-    private InputStream replaceTokensInXML(File xmlFile, String repoName, String credentialsId, String url, String file) throws IOException {
+    private InputStream replaceTokensInXML(File xmlFile, String repoName, String credentialsId, String url, String file, String team) throws IOException {
         BufferedReader br = null;
         String newString;
         StringBuilder strTotale = new StringBuilder();
@@ -258,6 +258,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             String credentialsToken = "#credentialsId#";
             String urlToken = "#url#";
             String fileToken = "#fileType#";
+            String teamToken = "#team#";
 
             br = new BufferedReader(reader);
             while ((newString = br.readLine()) != null){
@@ -266,6 +267,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                 newString = newString.replaceAll(credentialsToken, credentialsId);
                 newString = newString.replaceAll(urlToken, url);
                 newString = newString.replaceAll(fileToken, file);
+                newString = newString.replaceAll(teamToken, team);
                 strTotale.append(newString);
             }
 
