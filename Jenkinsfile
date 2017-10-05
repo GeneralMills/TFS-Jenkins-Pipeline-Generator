@@ -1,2 +1,2 @@
 @Library('jenkins-build-plugin') _
-buildPlugin()
+buildPlugin(jdkVersions: [7])
