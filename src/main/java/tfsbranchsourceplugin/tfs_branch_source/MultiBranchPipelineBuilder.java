@@ -115,9 +115,9 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         Folder folder = new Folder(Jenkins.getInstance(), team);
         for(String name : reposWithFile)
         {
-            File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
+            File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\newconfig.xml");
             listener.getLogger().println(name);
-            InputStream foobar = replaceTokensInXML(xmlFile, name, credentials);
+            InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file);
             try
             {
                 folder.createProjectFromXML(name, foobar);
@@ -246,7 +246,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return tfsCredentials;
     }
 
-    private InputStream replaceTokensInXML(File xmlFile, String repoName, String credentialsId) throws IOException {
+    private InputStream replaceTokensInXML(File xmlFile, String repoName, String credentialsId, String url, String file) throws IOException {
         BufferedReader br = null;
         String newString;
         StringBuilder strTotale = new StringBuilder();
@@ -256,12 +256,16 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             String repoToken = "#repo#";
             String guidToken = "#guid#";
             String credentialsToken = "#credentialsId#";
+            String urlToken = "#url#";
+            String fileToken = "#fileType#";
 
             br = new BufferedReader(reader);
             while ((newString = br.readLine()) != null){
                 newString = newString.replaceAll(repoToken, repoName);
                 newString = newString.replaceAll(guidToken, java.util.UUID.randomUUID().toString());
                 newString = newString.replaceAll(credentialsToken, credentialsId);
+                newString = newString.replaceAll(urlToken, url);
+                newString = newString.replaceAll(fileToken, file);
                 strTotale.append(newString);
             }
 
