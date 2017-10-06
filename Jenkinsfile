@@ -13,7 +13,7 @@ pipeline {
                     def server = Artifactory.server 'Test-Artifactory'
 
                     // Read the upload specs:
-                    def upload = readfile 'props-upload.json'
+                    def upload = readJSON file:'props-upload.json'
 
                     // Upload files to Artifactory:
                     def uploadInfo = server.upload spec: uploadSpec
