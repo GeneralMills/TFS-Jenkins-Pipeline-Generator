@@ -1,8 +1,0 @@
-{
-  "files": [
-    {
-      "pattern": "artifact/target/tfs_branch_source.hpi",
-      "target": "maven-snapshot-local"
-    }
-  ]
-}

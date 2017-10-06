@@ -15,14 +15,11 @@ pipeline {
                     def upload = """{
                       "files": [
                         {
-                          "pattern": "artifact/target/tfs_branch_source.hpi",
-                          "target": "maven-snapshot-local"
+                          "pattern": "tfs_branch_source.hpi",
+                          "target": "maven-snapshot-local/"
                         }
                       ]
                     }"""
-
-                    // Read the upload specs:
-                    //def upload = readJSON file:'props-upload.json'
 
                     // Upload files to Artifactory:
                     def uploadInfo = server.upload(spec: upload)
