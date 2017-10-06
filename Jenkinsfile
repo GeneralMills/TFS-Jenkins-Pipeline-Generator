@@ -15,7 +15,7 @@ pipeline {
                     def upload = """{
                       "files": [
                         {
-                          "pattern": "tfs_branch_source.hpi",
+                          "pattern": "*/tfs_branch_source.hpi",
                           "target": "maven-snapshot-local/"
                         }
                       ]
