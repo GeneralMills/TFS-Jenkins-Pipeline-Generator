@@ -10,7 +10,7 @@ pipeline {
         stage('Upload to Artifactory') {
             steps {
                 script {
-                    def server = Artifactory.server 'Test-Artifactory'
+                    def server = Artifactory.server('Test-Artifactory')
 
                     // Read the upload specs:
                     def upload = readJSON file:'props-upload.json'
