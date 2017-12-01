@@ -113,7 +113,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         }
 
         listener.getLogger().println("\n\n--Repos with the file--");
-        Folder folder = new Folder(Jenkins.getInstance(), team);
+        Folder folder = Jenkins.getInstance().getItemByFullName(team, Folder.class);
         for(String name : reposWithFile)
         {
             File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
@@ -124,19 +124,9 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             {
                 folder.createProjectFromXML(name, foobar);
             }
-            //Happens when a job already exists with the given name
             else
             {
                 listener.getLogger().println(name + "already exists");
-            }
-
-            try
-            {
-                Jenkins.getInstance().doReload();
-            }
-            catch(IOException e)
-            {
-                listener.getLogger().println(e.getMessage());
             }
         }
     }
