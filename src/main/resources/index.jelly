@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
-  Tlugin will scan a TFS Git organization and create Multibranch Pipelines for repos found in a given Team Project
+  This plugin will scan a TFS Git organization and create Multibranch Pipelines for repos found in a given Team Project
 </div>

@@ -22,8 +22,8 @@ import hudson.util.ListBoxModel;
 import jenkins.model.Jenkins;
 import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
+import org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject;
 import org.json.JSONArray;
-import org.jvnet.hudson.reactor.ReactorException;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.kohsuke.stapler.QueryParameter;
@@ -39,7 +39,6 @@ import java.util.List;
 public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildStep {
 
     private final String teamProjectUrl;
-    private final String teamProject;
     private final String credentialsId;
     private final String projectRecognizer;
 
@@ -48,7 +47,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
     @DataBoundConstructor
     public MultiBranchPipelineBuilder(String teamProjectUrl, String teamProject, String credentialsId, String projectRecognizer) {
         this.teamProjectUrl = teamProjectUrl;
-        this.teamProject = teamProject;
         this.credentialsId = credentialsId;
         this.projectRecognizer = projectRecognizer;
 
@@ -59,9 +57,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
      */
     public String getTeamProjectUrl() {
         return teamProjectUrl;
-    }
-    public String getTeamProject() {
-        return teamProject;
     }
     public String getCredentialsId() {
         return credentialsId;
@@ -74,10 +69,16 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
     @Override
     public void perform(Run<?,?> build, FilePath workspace, Launcher launcher, TaskListener listener) throws IOException, InterruptedException {
 
-        String url = teamProjectUrl;
-        String team = teamProject;
+        String url = this.teamProjectUrl;
         String file = projectRecognizer;
         String credentials = credentialsId;
+
+        if(url.endsWith("/")) {
+            url = url.substring(0, url.length() - 1);
+        }
+
+        //Get the team project name which will also be the folder name this is under
+        String team = url.substring(url.lastIndexOf('/') + 1);
 
         final StandardUsernamePasswordCredentials tfsCredentials;
         try
@@ -118,27 +119,26 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
             listener.getLogger().println(name);
             InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file, team);
-            try
+            TopLevelItem job = Jenkins.getInstance().getItemByFullName(name, WorkflowMultiBranchProject.class);
+            if(job == null)
             {
                 folder.createProjectFromXML(name, foobar);
             }
             //Happens when a job already exists with the given name
-            catch(IllegalArgumentException e)
+            else
+            {
+                listener.getLogger().println(name + "already exists");
+            }
+
+            try
+            {
+                Jenkins.getInstance().doReload();
+            }
+            catch(IOException e)
             {
                 listener.getLogger().println(e.getMessage());
             }
         }
-
-        try
-        {
-            Jenkins.getInstance().doReload();
-        }
-        catch(IOException e)
-        {
-            listener.getLogger().println(e.getMessage());
-        }
-
-
     }
 
     // Overridden for better type safety.
@@ -150,7 +150,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
     }
 
     private JSONArray GetReposForTeamProject(TaskListener listener, OkHttpClient client, String teamProjectUrl) throws IOException {
-        String listOfReposUrl = teamProjectUrl + "_apis/git/repositories?api-version=1";
+        String listOfReposUrl = teamProjectUrl + "/_apis/git/repositories?api-version=1";
         org.json.JSONObject obj = callGet(client, listOfReposUrl);
         JSONArray repos = obj.getJSONArray("value");
         for(int i = 0; i < repos.length(); i++)
@@ -162,7 +162,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
     }
 
     private JSONArray GetBranchesForRepo(TaskListener listener, OkHttpClient client, String teamProjectUrl, org.json.JSONObject repo) throws IOException {
-        String listOfBranchesUrl = teamProjectUrl + "_apis/git/repositories/"+ repo.get("id") +"/refs?filter=heads&api-version=1.0";
+        String listOfBranchesUrl = teamProjectUrl + "/_apis/git/repositories/"+ repo.get("id") +"/refs?filter=heads&api-version=1.0";
         org.json.JSONObject obj = callGet(client, listOfBranchesUrl);
         JSONArray branches = obj.getJSONArray("value");
         listener.getLogger().println("Repo: " + repo.get("name"));
@@ -178,7 +178,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
     private boolean checkBranchesForFile(TaskListener listener, OkHttpClient client, String teamProjectUrl, String repoId, org.json.JSONObject branch, String file) throws IOException {
         String branchName = branch.get("name").toString().substring(11);
         listener.getLogger().println("\t--Looking through branch: " + branchName + " for a jenkinsfile--");
-        String jenkinsFileMetadataUrl = teamProjectUrl + "_apis/git/repositories/" + repoId + "/items?api-version=1.0&version=" + branchName + "&scopepath=/" + file;
+        String jenkinsFileMetadataUrl = teamProjectUrl + "/_apis/git/repositories/" + repoId + "/items?api-version=1.0&version=" + branchName + "&scopepath=/" + file;
         org.json.JSONObject obj = callGet(client, jenkinsFileMetadataUrl);
         if(obj.has("value")) {
             JSONArray fileList = obj.getJSONArray("value");

@@ -10,10 +10,7 @@
     Creates a text field that shows the value of the "name" property.
     When submitted, it will be passed to the corresponding constructor parameter.
   -->
-  <f:entry title="Team Project URL" field="teamProjectUrl">
-    <f:textbox />
-  </f:entry>
-  <f:entry title="Team Project" field="teamProject">
+  <f:entry title="Team project URL" field="teamProjectUrl">
     <f:textbox />
   </f:entry>
     <f:entry title="Credentials" field="credentialsId">
