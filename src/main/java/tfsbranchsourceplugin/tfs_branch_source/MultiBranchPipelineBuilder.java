@@ -141,14 +141,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         }
     }
 
-    // Overridden for better type safety.
-    // If your plugin doesn't really define any property on Descriptor,
-    // you don't have to do this.
-    @Override
-    public MultiBranchPipelineBuilder.DescriptorImpl getDescriptor() {
-        return (MultiBranchPipelineBuilder.DescriptorImpl)super.getDescriptor();
-    }
-
     private JSONArray GetReposForTeamProject(TaskListener listener, OkHttpClient client, String teamProjectUrl) throws IOException {
         String listOfReposUrl = teamProjectUrl + "/_apis/git/repositories?api-version=1";
         org.json.JSONObject obj = callGet(client, listOfReposUrl);
@@ -272,7 +264,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             }
 
         } catch ( IOException  e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } // calls it
         finally
@@ -280,7 +271,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             try {
                 br.close();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -289,67 +279,4 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return xml;
     }
 
-    /**
-     * Descriptor for {@link HelloWorldBuilder}. Used as a singleton.
-     * The class is marked as public so that it can be accessed from views.
-     *
-     * <p>
-     * See {@code src/main/resources/hudson/plugins/hello_world/HelloWorldBuilder/*.jelly}
-     * for the actual HTML fragment for the configuration screen.
-     */
-    @Extension // This indicates to Jenkins that this is an implementation of an extension point.
-    public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
-
-
-        /**
-         * In order to load the persisted global configuration, you have to
-         * call load() in the constructor.
-         */
-        public DescriptorImpl() {
-            load();
-        }
-
-
-        public boolean isApplicable(Class<? extends AbstractProject> aClass) {
-            // Indicates that this builder can be used with all kinds of project types
-            return true;
-        }
-
-        public ListBoxModel doFillCredentialsIdItems(@AncestorInPath Item context,
-                                                     @QueryParameter String remote,
-                                                     @QueryParameter String username) {
-            if (context == null && !Jenkins.getActiveInstance().hasPermission(Jenkins.ADMINISTER) ||
-                    context != null && !context.hasPermission(Item.EXTENDED_READ)) {
-                return new StandardListBoxModel().includeCurrentValue(username);
-            }
-            return new StandardListBoxModel()
-                    .includeEmptyValue()
-                    .includeMatchingAs(
-                            context instanceof Queue.Task ? Tasks.getAuthenticationOf((Queue.Task)context) : ACL.SYSTEM,
-                            context,
-                            StandardUsernameCredentials.class,
-                            URIRequirementBuilder.fromUri(remote).build(),
-                            GitClient.CREDENTIALS_MATCHER)
-                    .includeCurrentValue(username);
-        }
-
-        /**
-         * This human readable name is used in the configuration screen.
-         */
-        public String getDisplayName() {
-            return "Generate MultiBranch pipeline from TFS GIT";
-        }
-
-        @Override
-        public boolean configure(StaplerRequest req, JSONObject formData) throws FormException {
-            // To persist global configuration information,
-            // set that to properties and call save().
-            //useFrench = formData.getBoolean("useFrench");
-            // ^Can also use req.bindJSON(this, formData);
-            //  (easier when there are many fields; need set* methods for this, like setUseFrench)
-            save();
-            return super.configure(req,formData);
-        }
-
-    }
 }
