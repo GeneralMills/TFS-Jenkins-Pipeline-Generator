@@ -99,21 +99,21 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         listener.getLogger().println("\n\n--Processing repos--");
         Folder folder = Jenkins.getInstance().getItemByFullName(team, Folder.class);
         if (folder == null) {
-            Jenkins.getInstance().createProject(Folder.class, team);
-            folder = Jenkins.getInstance().getItemByFullName(team, Folder.class);
+            throw new AbortException("Team project folder does not exist! Please make a folder for the " + team + " team project before running this job.");
         }
-        for (String name : reposWithFile) {
-            File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
-            InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file, team);
-            TopLevelItem job = folder.getItem(name);
-            if (job == null) {
-                folder.createProjectFromXML(name, foobar);
-                listener.getLogger().println("Created multibranch pipeline for: " + name);
-            } else {
-                listener.getLogger().println(name + " multibranch pipeline already exists");
+        else {
+            for (String name : reposWithFile) {
+                File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
+                InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file, team);
+                TopLevelItem job = folder.getItem(name);
+                if (job == null) {
+                    folder.createProjectFromXML(name, foobar);
+                    listener.getLogger().println("Created multibranch pipeline for: " + name);
+                } else {
+                    listener.getLogger().println(name + " multibranch pipeline already exists");
+                }
             }
         }
-
     }
 
     @Override
