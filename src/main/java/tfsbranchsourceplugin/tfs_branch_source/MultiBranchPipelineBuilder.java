@@ -224,7 +224,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             String credentialsToken = "#credentialsId#";
             String urlToken = "#url#";
             String fileToken = "#fileType#";
-            String teamToken = "#team#";
 
             br = new BufferedReader(reader);
             while ((newString = br.readLine()) != null) {
@@ -233,7 +232,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                 newString = newString.replaceAll(credentialsToken, credentialsId);
                 newString = newString.replaceAll(urlToken, url);
                 newString = newString.replaceAll(fileToken, file);
-                newString = newString.replaceAll(teamToken, team);
                 strTotale.append(newString);
             }
 
