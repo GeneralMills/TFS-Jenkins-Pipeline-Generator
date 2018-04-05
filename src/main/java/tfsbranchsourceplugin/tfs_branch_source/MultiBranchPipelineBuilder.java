@@ -24,6 +24,7 @@ import jenkins.model.Jenkins;
 import jenkins.tasks.SimpleBuildStep;
 import net.sf.json.JSONObject;
 import org.jenkinsci.plugins.gitclient.GitClient;
+import org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject;
 import org.json.JSONArray;
 import org.kohsuke.stapler.AncestorInPath;
 import org.kohsuke.stapler.DataBoundConstructor;
@@ -103,6 +104,8 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                 if (job == null) {
                     folder.createProjectFromXML(name, foobar);
                     listener.getLogger().println("Created multibranch pipeline for: " + name);
+                    WorkflowMultiBranchProject mbp = (WorkflowMultiBranchProject) folder.getItem(name);
+                    mbp.scheduleBuild();
                 } else {
                     listener.getLogger().println(name + " multibranch pipeline already exists");
                 }
