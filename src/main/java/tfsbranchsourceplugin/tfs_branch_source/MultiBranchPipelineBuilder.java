@@ -38,9 +38,9 @@ import java.util.List;
 
 public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildStep {
 
-    private final String teamProjectUrl;
-    private final String credentialsId;
-    private final String projectRecognizer;
+    public final String teamProjectUrl;
+    public final String credentialsId;
+    public final String projectRecognizer;
 
 
     @DataBoundConstructor
@@ -49,10 +49,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         this.credentialsId = credentialsId;
         this.projectRecognizer = projectRecognizer;
 
-    }
-
-    public String getCredentialsId() {
-        return credentialsId;
     }
 
     @Override
