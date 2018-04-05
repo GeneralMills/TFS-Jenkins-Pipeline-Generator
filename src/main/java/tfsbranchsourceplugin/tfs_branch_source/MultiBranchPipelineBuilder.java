@@ -40,22 +40,19 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
 
     public final String teamProjectUrl;
     public final String credentialsId;
-    public final String projectRecognizer;
 
 
     @DataBoundConstructor
-    public MultiBranchPipelineBuilder(String teamProjectUrl, String credentialsId, String projectRecognizer) {
+    public MultiBranchPipelineBuilder(String teamProjectUrl, String credentialsId) {
         this.teamProjectUrl = teamProjectUrl;
         this.credentialsId = credentialsId;
-        this.projectRecognizer = projectRecognizer;
-
     }
 
     @Override
     public void perform(Run<?, ?> build, FilePath workspace, Launcher launcher, TaskListener listener) throws IOException, InterruptedException {
 
         String url = this.teamProjectUrl;
-        String file = projectRecognizer;
+        String file = "Jenkinsfile";
         String credentials = credentialsId;
 
         if (url.endsWith("/")) {

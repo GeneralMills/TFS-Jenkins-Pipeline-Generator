@@ -16,7 +16,4 @@
     <f:entry title="Credentials" field="credentialsId">
         <c:select />
     </f:entry>
-  <f:entry title="Project Recognizer" field="projectRecognizer">
-    <f:textbox />
-  </f:entry>
 </j:jelly>
