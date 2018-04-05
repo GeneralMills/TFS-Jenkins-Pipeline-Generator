@@ -90,14 +90,15 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         }
 
         listener.getLogger().println("\n\n--Processing repos--");
-        Folder folder = Jenkins.getInstance().getItemByFullName(team, Folder.class);
+        String folderName = ((FreeStyleBuild) build).getProject().getParent().getFullName();
+        Folder folder = Jenkins.getInstance().getItemByFullName(folderName, Folder.class);
         if (folder == null) {
-            throw new AbortException("Team project folder does not exist! Please make a folder for the " + team + " team project before running this job.");
+            throw new AbortException("Team project folder does not exist! Please make a folder for the " + folderName + " team project before running this job.");
         }
         else {
             for (String name : reposWithFile) {
                 File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
-                InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file, team);
+                InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file, folderName);
                 TopLevelItem job = folder.getItem(name);
                 if (job == null) {
                     folder.createProjectFromXML(name, foobar);
