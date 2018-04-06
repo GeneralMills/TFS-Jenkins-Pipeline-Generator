@@ -89,6 +89,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             //Create one-off pipeline jobs if they have files in the top level of their master branch that are .Jenkinsfiles
             List<String> jenkinsfiles = getJenkinsfileTypesFromMasterBranch(listener, client, url, repos.getJSONObject(i));
             if(jenkinsfiles != null && jenkinsfiles.size() > 0) {
+                listener.getLogger().printf("\t--Creating Pipeline jobs from .Jenkinsfiles--%n");
                 File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\pipelineConfig.xml");
                 String folderName = ((FreeStyleBuild) build).getProject().getParent().getFullName();
                 Folder folder = Jenkins.getInstance().getItemByFullName(folderName, Folder.class);
@@ -99,11 +100,14 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                     if (job == null) {
                         InputStream configuredFile = replaceTokensInXML(xmlFile, repos.getJSONObject(i).get("name").toString(), credentials, url, jenkinsfile);
                         folder.createProjectFromXML(jobName, configuredFile);
-                        listener.getLogger().println("Created pipeline for: " + jobName);
+                        listener.getLogger().printf("\tCreated pipeline for: %s%n", jobName);
                     } else {
-                        listener.getLogger().println(jobName + " pipeline already exists");
+                        listener.getLogger().printf("\t%s pipeline already exists%n", jobName);
                     }
                 }
+            }
+            else {
+                listener.getLogger().printf("\tNo .Jenkinsfiles found in master branch");
             }
         }
 
