@@ -99,10 +99,10 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         else {
             for (String name : reposWithFile) {
                 File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
-                InputStream foobar = replaceTokensInXML(xmlFile, name, credentials, url, file, folderName);
+                InputStream configuredFile = replaceTokensInXML(xmlFile, name, credentials, url, file);
                 TopLevelItem job = folder.getItem(name);
                 if (job == null) {
-                    folder.createProjectFromXML(name, foobar);
+                    folder.createProjectFromXML(name, configuredFile);
                     listener.getLogger().println("Created multibranch pipeline for: " + name);
                     WorkflowMultiBranchProject mbp = (WorkflowMultiBranchProject) folder.getItem(name);
                     mbp.scheduleBuild();
@@ -209,7 +209,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return tfsCredentials;
     }
 
-    private InputStream replaceTokensInXML(File xmlFile, String repoName, String credentialsId, String url, String file, String team) throws IOException {
+    private InputStream replaceTokensInXML(File xmlFile, String repoName, String credentialsId, String url, String file) throws IOException {
         BufferedReader br = null;
         String newString;
         StringBuilder strTotale = new StringBuilder();
