@@ -42,7 +42,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
     public final String teamProjectUrl;
     public final String credentialsId;
 
-
     @DataBoundConstructor
     public MultiBranchPipelineBuilder(String teamProjectUrl, String credentialsId) {
         this.teamProjectUrl = teamProjectUrl;
@@ -93,7 +92,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                 Folder folder = Jenkins.getInstance().getItemByFullName(folderName, Folder.class);
                 for(String jenkinsfile : jenkinsfiles) {
                     String repoName = repos.getJSONObject(i).get("name").toString();
-                    String jobName = String.format("%s %s", repoName, jenkinsfile);
+                    String jobName = String.format("%s %s", repoName, jenkinsfile.split("\\.")[0]);
                     TopLevelItem job = folder.getItem(jobName);
                     if (job == null) {
                         InputStream configuredFile = replaceTokensInXML(xmlFile, repos.getJSONObject(i).get("name").toString(), credentials, url, jenkinsfile);
