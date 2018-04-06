@@ -85,6 +85,8 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                 }
             }
 
+
+            //Create one-off pipeline jobs if they have files in the top level of their master branch that are .Jenkinsfiles
             List<String> jenkinsfiles = getJenkinsfileTypesFromMasterBranch(listener, client, url, repos.getJSONObject(i));
             if(jenkinsfiles != null && jenkinsfiles.size() > 0) {
                 File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\pipelineConfig.xml");
