@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Package plugin') {
            steps {
-                buildPlugin(jdkVersions: [8], platforms: ['windows'])
+               echo "Hello"
+               buildPlugin(jdkVersions: [8], platforms: ['windows'])
            }
         }
         stage('Upload to Artifactory') {
