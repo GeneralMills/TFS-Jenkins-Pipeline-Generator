@@ -1,11 +1,11 @@
-@Library('jenkins-build-plugin') _
+//@Library('jenkins-build-plugin') _
 pipeline {
     agent any
     stages {
         stage('Package plugin') {
            steps {
                 echo "Hello"
-                buildPlugin(jdkVersions: [8], platforms: ['windows'])
+                //buildPlugin(jdkVersions: [8], platforms: ['windows'])
            }
         }
         stage('Upload to Artifactory') {
