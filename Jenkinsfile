@@ -1,4 +1,4 @@
-@Library('https://github.com/jenkins-infra/pipeline-library') _
+@Library('github.com/jenkins-infra/pipeline-library') _
 pipeline {
     agent any
     stages {
