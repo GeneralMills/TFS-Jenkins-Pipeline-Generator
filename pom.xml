@@ -28,8 +28,8 @@
     <findbugs.failOnError>false</findbugs.failOnError>
   </properties>
 
-  <name>TFS Git Scanner</name>
-  <description>Similar to the Github Organization plugin, this plugin will scan a TFS Git organization and create Multibranch Pipelines for repos found in a given Team Project</description>
+  <name>TFS Pipeline Generator</name>
+  <description>Similar to the Github Organization plugin, this plugin will scan a TFS Team Project and create Multibranch Pipelines if a Jenkinsfile is found on any branch.  It will also generate one-off Pipeline jobs for any other .Jenkinsfile it finds on the master branch.</description>
   <url>https://wiki.jenkins-ci.org/display/JENKINS/TFSGitScanner</url>
 
   <!-- The default licence for Jenkins OSS Plugins is MIT. Substitute for the applicable one if needed. -->
