@@ -1,3 +1,4 @@
+@Library('jenkins-build-plugin')
 pipeline {
     agent any
     stages {
