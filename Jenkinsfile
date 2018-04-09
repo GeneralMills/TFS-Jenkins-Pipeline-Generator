@@ -1,4 +1,4 @@
-@Library('github.com/jenkins-infra/pipeline-library') _
+@Library('jenkins-build-plugin') _
 pipeline {
     agent any
     stages {
