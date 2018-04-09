@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Package plugin') {
            steps {
-               echo "Hello"
                buildPlugin(jdkVersions: [8], platforms: ['windows'])
            }
         }
