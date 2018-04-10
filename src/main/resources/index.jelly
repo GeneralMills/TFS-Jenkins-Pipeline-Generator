@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
-  This plugin will scan a TFS Git organization and create Multibranch Pipelines for repos found in a given Team Project
+  This plugin will scan a TFS Team Project and create Multibranch Pipelines if a Jenkinsfile is found on any branch.  It will also generate one-off Pipeline jobs for any other .Jenkinsfile it finds on the master branch
 </div>
