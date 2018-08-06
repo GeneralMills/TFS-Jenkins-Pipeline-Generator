@@ -289,40 +289,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return xml;
     }
 
-    /*private InputStream replaceTokensInXMLCredentials(File xmlFile, String credentialsId, String url, String jenkinsfileName) throws IOException {
-        BufferedReader br = null;
-        String newString;
-        StringBuilder strTotale = new StringBuilder();
-        try {
-
-            FileReader reader = new FileReader(xmlFile);
-            String credentialsToken = "#credentialsId#";
-            String urlToken = "#url#";
-            String jenkinsfileNameToken = "#jenkinsfileName#";
-
-            br = new BufferedReader(reader);
-            while ((newString = br.readLine()) != null) {
-                newString = newString.replaceAll(credentialsToken, credentialsId);
-                newString = newString.replaceAll(urlToken, url);
-                newString = newString.replaceAll(jenkinsfileNameToken, jenkinsfileName);
-                strTotale.append(newString);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } // calls it
-        finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        InputStream xml = new ByteArrayInputStream(strTotale.toString().getBytes(StandardCharsets.UTF_8));
-        return xml;
-    }*/
-
     @Extension // This indicates to Jenkins that this is an implementation of an extension point.
     public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
 
