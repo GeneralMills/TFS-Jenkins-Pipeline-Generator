@@ -6,10 +6,7 @@ import com.cloudbees.plugins.credentials.common.StandardListBoxModel;
 import com.cloudbees.plugins.credentials.common.StandardUsernameCredentials;
 import com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials;
 import com.cloudbees.plugins.credentials.domains.URIRequirementBuilder;
-import com.squareup.okhttp.Authenticator;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
+import com.squareup.okhttp.*;
 import hudson.AbortException;
 import hudson.Extension;
 import hudson.FilePath;
@@ -32,7 +29,6 @@ import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.StaplerRequest;
 
 import java.io.*;
-import java.net.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,17 +64,17 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         }
         ArrayList<String> reposWithFile = new ArrayList<>();
 
-        OkHttpClient client = createClient(tfsCredentials);
+        OkHttpClient client = new OkHttpClient();
 
         listener.getLogger().println("--Looking through Team Project for repos--");
-        JSONArray repos = getReposForTeamProject(listener, client, url);
+        JSONArray repos = getReposForTeamProject(listener, client, url, tfsCredentials);
 
         for (int i = 0; i < repos.length(); i++) {
             listener.getLogger().println("\n\n--Looking through repo for branches--");
-            JSONArray branches = getBranchesForRepo(listener, client, url, repos.getJSONObject(i));
+            JSONArray branches = getBranchesForRepo(listener, client, url, repos.getJSONObject(i), tfsCredentials);
 
             for (int j = 0; j < branches.length(); j++) {
-                if (checkBranchesForFile(listener, client, url, repos.getJSONObject(i).get("id").toString(), branches.getJSONObject(j), file)) {
+                if (checkBranchesForFile(listener, client, url, repos.getJSONObject(i).get("id").toString(), branches.getJSONObject(j), file, tfsCredentials)) {
                     //Once we have found the file we are looking for, we don't need to check the rest of the branches
                     reposWithFile.add(repos.getJSONObject(i).get("name").toString());
                     break;
@@ -87,7 +83,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
 
 
             //Create one-off pipeline jobs if they have files in the top level of their master branch that are .Jenkinsfiles
-            List<String> jenkinsfiles = getJenkinsfileTypesFromMasterBranch(listener, client, url, repos.getJSONObject(i));
+            List<String> jenkinsfiles = getJenkinsfileTypesFromMasterBranch(listener, client, url, repos.getJSONObject(i), tfsCredentials);
             if(jenkinsfiles != null && jenkinsfiles.size() > 0) {
                 listener.getLogger().printf("\t--Creating Pipeline jobs from .Jenkinsfiles--%n");
                 File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\pipelineConfig.xml");
@@ -139,9 +135,9 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return (MultiBranchPipelineBuilder.DescriptorImpl) super.getDescriptor();
     }
 
-    private JSONArray getReposForTeamProject(TaskListener listener, OkHttpClient client, String teamProjectUrl) throws IOException {
+    private JSONArray getReposForTeamProject(TaskListener listener, OkHttpClient client, String teamProjectUrl, StandardUsernamePasswordCredentials tfsCredentials) throws IOException {
         String listOfReposUrl = teamProjectUrl + "/_apis/git/repositories?api-version=1";
-        org.json.JSONObject obj = callGet(client, listOfReposUrl);
+        org.json.JSONObject obj = callGet(client, listOfReposUrl, tfsCredentials);
         JSONArray repos = obj.getJSONArray("value");
         for (int i = 0; i < repos.length(); i++) {
             org.json.JSONObject repo = repos.getJSONObject(i);
@@ -150,9 +146,9 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return repos;
     }
 
-    private JSONArray getBranchesForRepo(TaskListener listener, OkHttpClient client, String teamProjectUrl, org.json.JSONObject repo) throws IOException {
+    private JSONArray getBranchesForRepo(TaskListener listener, OkHttpClient client, String teamProjectUrl, org.json.JSONObject repo, StandardUsernamePasswordCredentials tfsCredentials) throws IOException {
         String listOfBranchesUrl = String.format("%s/_apis/git/repositories/%s/refs?filter=heads&api-version=1.0", teamProjectUrl, repo.get("id"));
-        org.json.JSONObject obj = callGet(client, listOfBranchesUrl);
+        org.json.JSONObject obj = callGet(client, listOfBranchesUrl, tfsCredentials);
         JSONArray branches = obj.getJSONArray("value");
         listener.getLogger().println("Repo: " + repo.get("name"));
         for (int j = 0; j < branches.length(); j++) {
@@ -163,11 +159,11 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return branches;
     }
 
-    private boolean checkBranchesForFile(TaskListener listener, OkHttpClient client, String teamProjectUrl, String repoId, org.json.JSONObject branch, String file) throws IOException {
+    private boolean checkBranchesForFile(TaskListener listener, OkHttpClient client, String teamProjectUrl, String repoId, org.json.JSONObject branch, String file, StandardUsernamePasswordCredentials tfsCredentials) throws IOException {
         String branchName = branch.get("name").toString().substring(11);
         listener.getLogger().printf("\t--Looking through branch: %s for a jenkinsfile--%n", branchName);
         String jenkinsFileMetadataUrl = String.format("%s/_apis/git/repositories/%s/items?api-version=1.0&version=%s&scopepath=/%s", teamProjectUrl, repoId, branchName, file);
-        org.json.JSONObject obj = callGet(client, jenkinsFileMetadataUrl);
+        org.json.JSONObject obj = callGet(client, jenkinsFileMetadataUrl, tfsCredentials);
         if (obj.has("value")) {
             JSONArray fileList = obj.getJSONArray("value");
             for (int k = 0; k < fileList.length(); k++) {
@@ -181,11 +177,11 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return false;
     }
 
-    private List<String> getJenkinsfileTypesFromMasterBranch(TaskListener listener, OkHttpClient client, String teamProjectUrl, org.json.JSONObject repo) throws IOException{
+    private List<String> getJenkinsfileTypesFromMasterBranch(TaskListener listener, OkHttpClient client, String teamProjectUrl, org.json.JSONObject repo, StandardUsernamePasswordCredentials tfsCredentials) throws IOException{
         List<String> jenkinsfiles = new ArrayList<String>();
         listener.getLogger().println("\t--Searching for master branch--");
         String listOfFiles = String.format("%s/_apis/git/repositories/%s/items?api-version-1.0&version=master&scopepath=/&recursionLevel=OneLevel", teamProjectUrl, repo.get("id"));
-        org.json.JSONObject filesJson = callGet(client, listOfFiles);
+        org.json.JSONObject filesJson = callGet(client, listOfFiles, tfsCredentials);
         if (filesJson.has("value")) {
             JSONArray files = filesJson.getJSONArray("value");
             for (int j = 0; j < files.length(); j++) {
@@ -202,28 +198,12 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         }
     }
 
-    private OkHttpClient createClient(final StandardUsernamePasswordCredentials tfsCredentials) {
-        OkHttpClient client = new OkHttpClient();
-        client.setAuthenticator(new Authenticator() {
-            @Override
-            public Request authenticate(Proxy proxy, Response response) throws IOException {
-                String cred = com.squareup.okhttp.Credentials.basic(tfsCredentials.getUsername(), tfsCredentials.getPassword().getPlainText());
-                return response.request().newBuilder().header("Authorization", cred).build();
-            }
-
-            @Override
-            public Request authenticateProxy(Proxy proxy, Response response) throws IOException {
-                return null;
-            }
-        });
-        return client;
-    }
-
-    private org.json.JSONObject callGet(OkHttpClient client, String url) throws IOException {
+    private org.json.JSONObject callGet(OkHttpClient client, String url, StandardUsernamePasswordCredentials tfsCredentials) throws IOException {
         Request okRequest = new Request.Builder()
                 .url(url)
                 .addHeader("content-type", "application/json")
                 .addHeader("accept", "application/json")
+                .addHeader("authorization", Credentials.basic(tfsCredentials.getUsername(), tfsCredentials.getPassword().getPlainText()))
                 .build();
         Response response = client.newCall(okRequest).execute();
 
@@ -288,40 +268,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         InputStream xml = new ByteArrayInputStream(strTotale.toString().getBytes(StandardCharsets.UTF_8));
         return xml;
     }
-
-    /*private InputStream replaceTokensInXMLCredentials(File xmlFile, String credentialsId, String url, String jenkinsfileName) throws IOException {
-        BufferedReader br = null;
-        String newString;
-        StringBuilder strTotale = new StringBuilder();
-        try {
-
-            FileReader reader = new FileReader(xmlFile);
-            String credentialsToken = "#credentialsId#";
-            String urlToken = "#url#";
-            String jenkinsfileNameToken = "#jenkinsfileName#";
-
-            br = new BufferedReader(reader);
-            while ((newString = br.readLine()) != null) {
-                newString = newString.replaceAll(credentialsToken, credentialsId);
-                newString = newString.replaceAll(urlToken, url);
-                newString = newString.replaceAll(jenkinsfileNameToken, jenkinsfileName);
-                strTotale.append(newString);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } // calls it
-        finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        InputStream xml = new ByteArrayInputStream(strTotale.toString().getBytes(StandardCharsets.UTF_8));
-        return xml;
-    }*/
 
     @Extension // This indicates to Jenkins that this is an implementation of an extension point.
     public static final class DescriptorImpl extends BuildStepDescriptor<Builder> {
