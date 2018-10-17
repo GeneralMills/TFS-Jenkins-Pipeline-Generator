@@ -86,7 +86,6 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
             List<String> jenkinsfiles = getJenkinsfileTypesFromMasterBranch(listener, client, url, repos.getJSONObject(i), tfsCredentials);
             if(jenkinsfiles != null && jenkinsfiles.size() > 0) {
                 listener.getLogger().printf("\t--Creating Pipeline jobs from .Jenkinsfiles--%n");
-                File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\pipelineConfig.xml");
                 String folderName = ((FreeStyleBuild) build).getProject().getParent().getFullName();
                 Folder folder = Jenkins.getInstance().getItemByFullName(folderName, Folder.class);
                 for(String jenkinsfile : jenkinsfiles) {
@@ -94,7 +93,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                     String jobName = String.format("%s %s", repoName, jenkinsfile.split("\\.")[0]);
                     TopLevelItem job = folder.getItem(jobName);
                     if (job == null) {
-                        InputStream configuredFile = replaceTokensInXML(xmlFile, repos.getJSONObject(i).get("name").toString(), credentials, url, jenkinsfile);
+                        InputStream configuredFile = replaceTokensInXML(getPipelineXml(), repos.getJSONObject(i).get("name").toString(), credentials, url, jenkinsfile);
                         folder.createProjectFromXML(jobName, configuredFile);
                         listener.getLogger().printf("\tCreated pipeline for: %s%n", jobName);
                     } else {
@@ -115,8 +114,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         }
         else {
             for (String name : reposWithFile) {
-                File xmlFile = new File("C:\\Projects\\GMITFSPlugin\\tfs_vsts_branch_source\\xml\\config.xml");
-                InputStream configuredFile = replaceTokensInXML(xmlFile, name, credentials, url, file);
+                InputStream configuredFile = replaceTokensInXML(getMultibranchPipelineXml(), name, credentials, url, file);
                 TopLevelItem job = folder.getItem(name);
                 if (job == null) {
                     folder.createProjectFromXML(name, configuredFile);
@@ -231,42 +229,129 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
         return tfsCredentials;
     }
 
-    private InputStream replaceTokensInXML(File xmlFile, String repoName, String credentialsId, String url, String file) throws IOException {
-        BufferedReader br = null;
-        String newString;
-        StringBuilder strTotale = new StringBuilder();
-        try {
+    private InputStream replaceTokensInXML(String xml, String repoName, String credentialsId, String url, String file) throws IOException {
+        String repoToken = "#repo#";
+        String guidToken = "#guid#";
+        String credentialsToken = "#credentialsId#";
+        String urlToken = "#url#";
+        String fileToken = "#fileType#";
 
-            FileReader reader = new FileReader(xmlFile);
-            String repoToken = "#repo#";
-            String guidToken = "#guid#";
-            String credentialsToken = "#credentialsId#";
-            String urlToken = "#url#";
-            String fileToken = "#fileType#";
+        xml = xml.replaceAll(repoToken, repoName);
+        xml = xml.replaceAll(guidToken, java.util.UUID.randomUUID().toString());
+        xml = xml.replaceAll(credentialsToken, credentialsId);
+        xml = xml.replaceAll(urlToken, url);
+        xml = xml.replaceAll(fileToken, file);
 
-            br = new BufferedReader(reader);
-            while ((newString = br.readLine()) != null) {
-                newString = newString.replaceAll(repoToken, repoName);
-                newString = newString.replaceAll(guidToken, java.util.UUID.randomUUID().toString());
-                newString = newString.replaceAll(credentialsToken, credentialsId);
-                newString = newString.replaceAll(urlToken, url);
-                newString = newString.replaceAll(fileToken, file);
-                strTotale.append(newString);
-            }
+        return new ByteArrayInputStream(xml.getBytes(StandardCharsets.UTF_8));
+    }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } // calls it
-        finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    private String getMultibranchPipelineXml() {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin=\"workflow-multibranch@2.16\">\n" +
+                "    <actions>\n" +
+                "        <io.jenkins.blueocean.service.embedded.BlueOceanUrlAction plugin=\"blueocean-rest-impl@1.1.2\">\n" +
+                "            <blueOceanUrlObject class=\"io.jenkins.blueocean.service.embedded.BlueOceanUrlObjectImpl\">\n" +
+                "            </blueOceanUrlObject>\n" +
+                "        </io.jenkins.blueocean.service.embedded.BlueOceanUrlAction>\n" +
+                "    </actions>\n" +
+                "    <description />\n" +
+                "    <properties>\n" +
+                "        <com.cloudbees.hudson.plugins.folder.properties.EnvVarsFolderProperty plugin=\"cloudbees-folders-plus@3.1\">\n" +
+                "            <properties />\n" +
+                "        </com.cloudbees.hudson.plugins.folder.properties.EnvVarsFolderProperty>\n" +
+                "        <org.jenkinsci.plugins.pipeline.modeldefinition.config.FolderConfig plugin=\"pipeline-model-definition@1.1.7\">\n" +
+                "            <dockerLabel />\n" +
+                "            <registry plugin=\"docker-commons@1.7\" />\n" +
+                "        </org.jenkinsci.plugins.pipeline.modeldefinition.config.FolderConfig>\n" +
+                "    </properties>\n" +
+                "    <folderViews class=\"jenkins.branch.MultiBranchProjectViewHolder\" plugin=\"branch-api@2.0.10\">\n" +
+                "        <owner class=\"org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject\" reference=\"../..\" />\n" +
+                "    </folderViews>\n" +
+                "    <healthMetrics>\n" +
+                "        <com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric plugin=\"cloudbees-folder@6.1.2\">\n" +
+                "            <nonRecursive>false</nonRecursive>\n" +
+                "        </com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric>\n" +
+                "    </healthMetrics>\n" +
+                "    <icon class=\"jenkins.branch.MetadataActionFolderIcon\" plugin=\"branch-api@2.0.10\">\n" +
+                "        <owner class=\"org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject\" reference=\"../..\" />\n" +
+                "    </icon>\n" +
+                "    <orphanedItemStrategy class=\"com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy\" plugin=\"cloudbees-folder@6.1.2\">\n" +
+                "        <pruneDeadBranches>true</pruneDeadBranches>\n" +
+                "        <daysToKeep>1</daysToKeep>\n" +
+                "        <numToKeep>1</numToKeep>\n" +
+                "    </orphanedItemStrategy>\n" +
+                "    <triggers/>\n" +
+                "    <disabled>false</disabled>\n" +
+                "    <sources class=\"jenkins.branch.MultiBranchProject$BranchSourceList\" plugin=\"branch-api@2.0.10\">\n" +
+                "        <data>\n" +
+                "            <jenkins.branch.BranchSource>\n" +
+                "                <source class=\"jenkins.plugins.git.GitSCMSource\" plugin=\"git@3.3.0\">\n" +
+                "                    <id>#guid#</id>\n" +
+                "                    <remote>#url#/_git/#repo#</remote>\n" +
+                "                    <credentialsId>#credentialsId#</credentialsId>\n" +
+                "                    <remoteName>origin</remoteName>\n" +
+                "                    <rawRefSpecs>+refs/heads/*:refs/remotes/origin/*</rawRefSpecs>\n" +
+                "                    <includes>*</includes>\n" +
+                "                    <excludes />\n" +
+                "                    <ignoreOnPushNotifications>false</ignoreOnPushNotifications>\n" +
+                "                    <browser class=\"hudson.plugins.git.browser.TFS2013GitRepositoryBrowser\">\n" +
+                "                        <url />\n" +
+                "                    </browser>\n" +
+                "                    <gitTool>Default</gitTool>\n" +
+                "                </source>\n" +
+                "                <strategy class=\"jenkins.branch.DefaultBranchPropertyStrategy\">\n" +
+                "                    <properties class=\"empty-list\" />\n" +
+                "                </strategy>\n" +
+                "            </jenkins.branch.BranchSource>\n" +
+                "        </data>\n" +
+                "        <owner class=\"org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject\" reference=\"../..\" />\n" +
+                "    </sources>\n" +
+                "    <factory class=\"org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory\">\n" +
+                "        <owner class=\"org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject\" reference=\"../..\" />\n" +
+                "        <scriptPath>#fileType#</scriptPath>\n" +
+                "    </factory>\n" +
+                "</org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>";
+    }
 
-        InputStream xml = new ByteArrayInputStream(strTotale.toString().getBytes(StandardCharsets.UTF_8));
-        return xml;
+    private String getPipelineXml() {
+        return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+                "<flow-definition plugin=\"workflow-job@2.17\">\n" +
+                "    <description />\n" +
+                "    <keepDependencies>false</keepDependencies>\n" +
+                "    <properties>\n" +
+                "        <io.fabric8.jenkins.openshiftsync.BuildConfigProjectProperty plugin=\"openshift-sync@1.0.9\">\n" +
+                "            <uid />\n" +
+                "            <namespace />\n" +
+                "            <name />\n" +
+                "            <resourceVersion />\n" +
+                "        </io.fabric8.jenkins.openshiftsync.BuildConfigProjectProperty>\n" +
+                "        <com.synopsys.arc.jenkinsci.plugins.jobrestrictions.jobs.JobRestrictionProperty plugin=\"job-restrictions@0.6\" />\n" +
+                "    </properties>\n" +
+                "    <definition class=\"org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition\" plugin=\"workflow-cps@2.43\">\n" +
+                "        <scm class=\"hudson.plugins.git.GitSCM\" plugin=\"git@3.6.3\">\n" +
+                "            <configVersion>2</configVersion>\n" +
+                "            <userRemoteConfigs>\n" +
+                "                <hudson.plugins.git.UserRemoteConfig>\n" +
+                "                    <url>#url#/_git/#repo#</url>\n" +
+                "                    <credentialsId>#credentialsId#</credentialsId>\n" +
+                "                </hudson.plugins.git.UserRemoteConfig>\n" +
+                "            </userRemoteConfigs>\n" +
+                "            <branches>\n" +
+                "                <hudson.plugins.git.BranchSpec>\n" +
+                "                    <name>*/master</name>\n" +
+                "                </hudson.plugins.git.BranchSpec>\n" +
+                "            </branches>\n" +
+                "            <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>\n" +
+                "            <gitTool>Default</gitTool>\n" +
+                "            <submoduleCfg class=\"list\" />\n" +
+                "            <extensions />\n" +
+                "        </scm>\n" +
+                "        <scriptPath>#fileType#</scriptPath>\n" +
+                "        <lightweight>true</lightweight>\n" +
+                "    </definition>\n" +
+                "    <triggers />\n" +
+                "    <disabled>false</disabled>\n" +
+                "</flow-definition>";
     }
 
     @Extension // This indicates to Jenkins that this is an implementation of an extension point.
