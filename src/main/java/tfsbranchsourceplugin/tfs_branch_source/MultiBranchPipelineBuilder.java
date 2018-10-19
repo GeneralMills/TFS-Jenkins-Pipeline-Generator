@@ -37,11 +37,13 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
 
     public final String teamProjectUrl;
     public final String credentialsId;
+    public final Boolean runPipelines;
 
     @DataBoundConstructor
-    public MultiBranchPipelineBuilder(String teamProjectUrl, String credentialsId) {
+    public MultiBranchPipelineBuilder(String teamProjectUrl, String credentialsId, Boolean runPipelines) {
         this.teamProjectUrl = teamProjectUrl;
         this.credentialsId = credentialsId;
+        this.runPipelines = runPipelines;
     }
 
     @Override
@@ -120,7 +122,9 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                     folder.createProjectFromXML(name, configuredFile);
                     listener.getLogger().println("Created multibranch pipeline for: " + name);
                     WorkflowMultiBranchProject mbp = (WorkflowMultiBranchProject) folder.getItem(name);
-                    mbp.scheduleBuild();
+                    if(runPipelines) {
+                        mbp.scheduleBuild();
+                    }
                 } else {
                     listener.getLogger().println(name + " multibranch pipeline already exists");
                 }
