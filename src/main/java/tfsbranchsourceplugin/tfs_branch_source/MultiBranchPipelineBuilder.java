@@ -284,7 +284,12 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                 "        <daysToKeep>1</daysToKeep>\n" +
                 "        <numToKeep>1</numToKeep>\n" +
                 "    </orphanedItemStrategy>\n" +
-                "    <triggers/>\n" +
+                "    <triggers>\n" +
+                "    <com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger plugin=\"cloudbees-folder@6.9\">\n" +
+                "    <spec>H H/4 * * *</spec>\n" +
+                "    <interval>86400000</interval>\n" +
+                "    </com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger>\n" +
+                "    </triggers>\n" +
                 "    <disabled>false</disabled>\n" +
                 "    <sources class=\"jenkins.branch.MultiBranchProject$BranchSourceList\" plugin=\"branch-api@2.0.10\">\n" +
                 "        <data>\n" +
