@@ -122,7 +122,7 @@ public class MultiBranchPipelineBuilder extends Builder implements SimpleBuildSt
                     folder.createProjectFromXML(name, configuredFile);
                     listener.getLogger().println("Created multibranch pipeline for: " + name);
                     WorkflowMultiBranchProject mbp = (WorkflowMultiBranchProject) folder.getItem(name);
-                    if(runPipelines) {
+                    if(runPipelines != null && runPipelines) {
                         mbp.scheduleBuild();
                     }
                 } else {
